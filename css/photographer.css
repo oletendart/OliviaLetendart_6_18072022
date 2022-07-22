@@ -2,10 +2,36 @@
     display: none;
 }
 
+#lightbox_modal {
+    display: none;
+}
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
+    margin: 52px 100px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.photograph-header h1 {
+    color: #D3573C;
+}
+.photograph-header h2 {
+    color: #901C1C;
+    margin: 16px 0;
+}
+
+.photograph-header p {
+    color: #525252;
+}
+
+.photograph-header img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .contact_button {
@@ -31,6 +57,9 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    position: fixed;
+    transform: translateX(50%);
+    top: 2px;
 }
 
 .modal header {
@@ -47,6 +76,11 @@
     font-weight: normal;
     text-align: center;
     display: inline;
+}
+
+.modal h3 {
+    width: 100%;
+    text-align: left;
 }
 
 .modal #text {
@@ -67,10 +101,115 @@ form label {
 }
 
 
-form input {
+form input, textarea {
     width: 100%;
     height: 68px;
     border: none;
     border-radius: 5px;
+    resize: none;
 }
 
+#list_image {
+    margin: 0 100px;
+}
+#list_image header {
+    display: block;
+    padding: 0 12px 0 0;
+}
+
+#list_image label {
+    margin-right: 12px;
+}
+
+#list_image select {
+    background-color: #901C1C;
+    color: #FFFFFF;
+    width: 170px;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: 24px;
+    border: none;
+    box-shadow: none;
+
+}
+
+#grid_card {
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    gap: 95px 30px;
+    width: 100%;
+    justify-content: space-between;
+}
+.card img {
+    border-radius: 5px;
+    object-fit: cover;
+    height: 300px;
+    width: auto;
+}
+.card h3 {
+    font-size: 24px;
+    line-height: 32px;
+    color: #901C1C;
+    margin-top: 12px;
+}
+.card i {
+    height: 18px;
+    width: 18px;
+   color: #901C1C;
+}
+.card span {
+    display: flex;
+    justify-content: space-between;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#footer {
+    width: 380px;
+    height: auto;
+    background-color: #DB8876;
+   position: fixed;
+    bottom: 0;
+    right: 36px;
+    font-size: 24px;
+    line-height: 32px;
+    display: flex;
+    justify-content: space-between;
+    padding: 22px;
+    border-radius: 5px 5px 0 0;
+}
+
+.lightbox {
+    display: flex;
+    width: 1050px;
+    height: 700px;
+    position: fixed;
+    transform: translateX(50%);
+    top: 2px;
+}
+
+.lightbox i {
+    height: auto;
+    width: 48px;
+    color: #901C1C;
+}
+
+#lightbox_modal h5 {
+    font-size: 24px;
+    line-height: 32px;
+    color: #901C1C;
+
+}
+.flex-column i:first-child {
+    color: #901C1C;
+    height: 42px;
+    width: 42px;
+}
+.flex_column {
+    flex-direction: column;
+    justify-content: space-between;
+}

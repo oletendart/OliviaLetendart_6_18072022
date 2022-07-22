@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
-    <link href="/css/normalizer.css" rel="stylesheet" type="text/css" />
-    <link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="../../../Desktop/assets/images/logo.png" rel="icon" type="image/png">
+    <link href="css/normalizer.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/images/logo.png" rel="icon" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/00351c5345.js"></script>
     <title>Fisheye - photographe </title>
 </head>
 <body>
@@ -16,16 +17,101 @@
 </header>
 <main id="main">
     <div class="photograph-header">
+        <div>
+            <h1>Mimi Keel</h1>
+            <h2>London, UK</h2>
+            <p>Voir le beau dans le quotidien</p>
+        </div>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <img alt="" src="/assets/photographers/account.png">
     </div>
 </main>
+
+<section id="list_image">
+    <header>
+        <label for="name_select">Trier par</label>
+        <select id="name_select" name="select">
+            <option value="popularity">Popularité</option>
+            <option value="Date">Date</option>
+            <option value="Titre">Titre</option>
+        </select>
+    </header>
+    <main id="grid_card">
+        <div class="card">
+            <a href="#" onclick="displayLightbox()">
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+            </a>
+            <div class="flex">
+                <h3>Titre</h3>
+                <i class="far fa-heart icon_love"></i>
+            </div>
+        </div>
+
+        <div class="card">
+            <a href="#" onclick="displayLightbox()">
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+            </a>
+            <div class="flex">
+                <h3>Titre</h3>
+                <i class="far fa-heart icon_love"></i>
+            </div>
+        </div>
+
+        <div class="card">
+            <a href="#" onclick="displayLightbox()">
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+            </a>
+            <div class="flex">
+                <h3>Titre</h3>
+                <i class="far fa-heart icon_love"></i>
+            </div>
+        </div>
+
+        <div class="card">
+            <a href="#" onclick="displayLightbox()">
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+            </a>
+            <div class="flex">
+                <h3>Titre</h3>
+                <i class="far fa-heart icon_love"></i>
+            </div>
+        </div>
+
+        <div class="card">
+            <a href="#" onclick="displayLightbox()">
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+            </a>
+            <div class="flex">
+                <h3>Titre</h3>
+                <i class="far fa-heart icon_love"></i>
+            </div>
+        </div>
+
+        <div class="card">
+            <a href="#" onclick="displayLightbox()">
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+            </a>
+            <div class="flex">
+                <h3>Titre</h3>
+                <i class="far fa-heart icon_love"></i>
+            </div>
+        </div>
+
+    </main>
+</section>
+
+<section id="footer">
+    <h4>297 000 <i aria-label="likes" class="fas fa-heart icon_love"></i></h4>
+    <h4>300&euro; / jour</h4>
+</section>
+
 <section id="contact_modal">
     <div class="modal">
         <header>
             <h2>Contactez-moi</h2>
-            <h3>Mimi Keel</h3>
-            <img alt="" onclick="closeModal()" src="/assets/icons/close.svg"/>
+            <img alt="close" onclick="closeModal()" src="/assets/icons/close.svg"/>
         </header>
+        <h3>Mimi Keel</h3>
         <form>
             <label for="firstname">Prénom</label>
             <input id="firstname" name="firstname" type="text"/>
@@ -34,11 +120,24 @@
             <label for="email">Email</label>
             <input id="email" name="email" type="email"/>
             <label for="text">Votre message</label>
-            <input id="text" name="text" type="text"/>
-            <input class="contact_button" type="submit" value="Send" />
+            <textarea id="text" name="text"/></textarea>
+            <input class="contact_button" type="submit" value="Envoyer" />
         </form>
     </div>
 </section>
+
+<section id="lightbox_modal">
+    <div class="lightbox">
+        <i class="fa-solid fa-angle-left"></i>
+        <img alt="Lilac breasted roller" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg" />
+        <span class="flex_column">
+            <<i aria-label="close" class="fa-solid fa-xmark" onclick="closeLightbox()"></i>
+            <i class="fa-solid fa-angle-right"></i>
+        </span>
+    </div>
+    <h5>Arc-en-ciel</h5>
+</section>
+
 <script src="/scripts/utils/contactForm.js"></script>
 </body>
 </html>
