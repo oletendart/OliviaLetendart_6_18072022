@@ -46,20 +46,25 @@
     border-radius: 5px;
     cursor: pointer;
 }
+#contact_modal {
+    position: fixed;
+    background-color: rgba(84, 84, 84, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
-    position: fixed;
-    transform: translateX(50%);
-    top: 2px;
+    width: 670px;
+    margin: 0 auto;
 }
 
 .modal header {
@@ -121,7 +126,7 @@ form input, textarea {
     margin-right: 12px;
 }
 
-#list_image select {
+#list_image button {
     background-color: #901C1C;
     color: #FFFFFF;
     width: 170px;
@@ -131,12 +136,23 @@ form input, textarea {
     line-height: 24px;
     border: none;
     box-shadow: none;
+}
 
+#list_image button .fa-angle-down {
+    color: #fff;
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#list_image button span:nth-child(2), span:nth-child(3) {
+    display: none;
 }
 
 #grid_card {
     display: grid;
-    grid-template-columns: repeat(3, 350px);
+    grid-template-columns: repeat(3, 1fr);
     gap: 95px 30px;
     width: 100%;
     justify-content: space-between;
@@ -144,8 +160,8 @@ form input, textarea {
 .card img {
     border-radius: 5px;
     object-fit: cover;
-    height: 300px;
-    width: auto;
+    height: 25vw;
+    width: 100%;
 }
 .card h3 {
     font-size: 24px;
@@ -153,10 +169,11 @@ form input, textarea {
     color: #901C1C;
     margin-top: 12px;
 }
-.card i {
+.card .icon_love {
     height: 18px;
     width: 18px;
-   color: #901C1C;
+    color: #901C1C;
+    font-size: 18px;
 }
 .card span {
     display: flex;
@@ -183,33 +200,62 @@ form input, textarea {
     border-radius: 5px 5px 0 0;
 }
 
-.lightbox {
-    display: flex;
-    width: 1050px;
-    height: 700px;
+#lightbox_modal {
     position: fixed;
-    transform: translateX(50%);
-    top: 2px;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px 0;
+    background-color: rgba(84, 84, 84, 0.5);
+}
+.lightbox {
+    height: 90vw;
+    width: 90vw;
+    padding: 6%;
+    object-fit: cover;
+    margin: 0 auto;
+    position: relative;
 }
 
-.lightbox i {
-    height: auto;
-    width: 48px;
-    color: #901C1C;
+.lightbox img {
+    width: 60vw;
+    height: 90%;
+    object-fit: cover;
+    margin: 0 auto;
 }
 
 #lightbox_modal h5 {
     font-size: 24px;
     line-height: 32px;
     color: #901C1C;
+    width: 60vw;
+    margin: 0 auto;
+}
 
-}
-.flex-column i:first-child {
+#lightbox_modal .icon_lightbox {
+    height: 48px;
+    width: auto;
     color: #901C1C;
-    height: 42px;
-    width: 42px;
+    font-size: 48px;
 }
-.flex_column {
-    flex-direction: column;
-    justify-content: space-between;
+.lightbox .fa-angle-left {
+    position: absolute;
+    top: calc(50% - 48px);
+    transform: translateY(-50%);
+    left: 20px;
+}
+
+.lightbox .fa-angle-right {
+    position: absolute;
+    top: calc(50% - 48px);
+    transform: translateY(-50%);
+    right: 20px;
+}
+
+.lightbox .fa-times {
+    position: absolute;
+    top: 0;
+    left: calc(100% - 48px);
+    cursor: pointer;
 }

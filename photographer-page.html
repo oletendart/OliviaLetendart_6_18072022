@@ -30,11 +30,12 @@
 <section id="list_image">
     <header>
         <label for="name_select">Trier par</label>
-        <select id="name_select" name="select">
-            <option value="popularity">Popularité</option>
-            <option value="Date">Date</option>
-            <option value="Titre">Titre</option>
-        </select>
+        <button>
+            <span>Popularité</span>
+            <span>Date</span>
+            <span>Titre</span>
+            <i class="fas fa-angle-down"></i>
+        </button>
     </header>
     <main id="grid_card">
         <div class="card">
@@ -128,14 +129,12 @@
 
 <section id="lightbox_modal">
     <div class="lightbox">
-        <i class="fa-solid fa-angle-left"></i>
         <img alt="Lilac breasted roller" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg" />
-        <span class="flex_column">
-            <<i aria-label="close" class="fa-solid fa-xmark" onclick="closeLightbox()"></i>
-            <i class="fa-solid fa-angle-right"></i>
-        </span>
+        <i class="fas fa-angle-left icon_lightbox"></i>
+        <i aria-label="close" class="fas fa-times icon_lightbox" onclick="closeLightbox()"></i>
+        <i class="fas fa-angle-right icon_lightbox"></i>
+        <h5>Arc-en-ciel</h5>
     </div>
-    <h5>Arc-en-ciel</h5>
 </section>
 
 <script src="/scripts/utils/contactForm.js"></script>
