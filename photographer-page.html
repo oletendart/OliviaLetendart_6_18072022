@@ -31,16 +31,18 @@
     <header>
         <label for="name_select">Trier par</label>
         <button id="name_select">
-            <span>Popularité</span>
-            <span>Date</span>
-            <span>Titre</span>
+            <ul>
+                <li>Popularité</li>
+                <li class="hidden">Date</li>
+                <li class="hidden">Titre</li>
+            </ul>
             <i class="fas fa-angle-down"></i>
         </button>
     </header>
     <main id="grid_card">
         <div class="card">
             <a href="#" onclick="displayLightbox()">
-                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Mimi/Animals_Rainbow.jpg"/>
             </a>
             <div class="flex">
                 <h3>Titre</h3>
@@ -50,7 +52,7 @@
 
         <div class="card">
             <a href="#" onclick="displayLightbox()">
-                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Mimi/Animals_Rainbow.jpg"/>
             </a>
             <div class="flex">
                 <h3>Titre</h3>
@@ -60,7 +62,7 @@
 
         <div class="card">
             <a href="#" onclick="displayLightbox()">
-                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Mimi/Animals_Rainbow.jpg"/>
             </a>
             <div class="flex">
                 <h3>Titre</h3>
@@ -70,7 +72,7 @@
 
         <div class="card">
             <a href="#" onclick="displayLightbox()">
-                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Mimi/Animals_Rainbow.jpg"/>
             </a>
             <div class="flex">
                 <h3>Titre</h3>
@@ -80,7 +82,7 @@
 
         <div class="card">
             <a href="#" onclick="displayLightbox()">
-                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Mimi/Animals_Rainbow.jpg"/>
             </a>
             <div class="flex">
                 <h3>Titre</h3>
@@ -90,7 +92,7 @@
 
         <div class="card">
             <a href="#" onclick="displayLightbox()">
-                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg"/>
+                <img alt="Lilac breasted roller, closeup view" src="assets/photographers/Mimi/Animals_Rainbow.jpg"/>
             </a>
             <div class="flex">
                 <h3>Titre</h3>
@@ -129,7 +131,7 @@
 
 <section id="lightbox_modal">
     <div class="lightbox">
-        <img alt="Lilac breasted roller" src="assets/photographers/Sample%20Photos/Mimi/Animals_Rainbow.jpg" />
+        <img alt="Lilac breasted roller" src="assets/photographers/Mimi/Animals_Rainbow.jpg" />
         <i class="fas fa-angle-left icon_lightbox"></i>
         <i aria-label="close" class="fas fa-times icon_lightbox" onclick="closeLightbox()"></i>
         <i class="fas fa-angle-right icon_lightbox"></i>
@@ -137,6 +139,7 @@
     </div>
 </section>
 
+<script src="/scripts/pages/photographer-page.js"></script>
 <script src="/scripts/utils/contactForm.js"></script>
 </body>
 </html>
