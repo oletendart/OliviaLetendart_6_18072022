@@ -204,10 +204,19 @@ form input, textarea {
     height: 25vw;
     width: 100%;
 }
+
+.card video {
+    border-radius: 5px;
+    object-fit: cover;
+    height: 25vw;
+    width: 100%;
+    display: block;
+}
 .card h3 {
     font-size: 24px;
     line-height: 32px;
     color: #901C1C;
+    text-align: left;
 }
 .card .icon_love {
     height: 18px;
@@ -222,15 +231,28 @@ form input, textarea {
 .flex {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 12px;
+}
+
+.flex div {
+    display: flex;
+    align-items: center;
+}
+
+.flex div h4 {
+    color: #901C1C;
+    font-size: 24px;
+    line-height: 32px;
+    font-family: 'DM Sans', sans-serif;
+    margin-right: 6px;
 }
 
 #footer {
     width: 380px;
     height: auto;
     background-color: #DB8876;
-   position: fixed;
+    position: fixed;
     bottom: 0;
     right: 36px;
     font-size: 24px;
@@ -239,6 +261,22 @@ form input, textarea {
     justify-content: space-between;
     padding: 22px;
     border-radius: 5px 5px 0 0;
+}
+
+#footer div {
+    display: flex;
+    width: 100%;
+    align-content: center;
+    justify-content: space-between;
+}
+
+#footer div h4:nth-child(1) {
+    display: flex;
+    align-items: center;
+}
+
+#footer div i {
+    margin-left: 6px;
 }
 
 

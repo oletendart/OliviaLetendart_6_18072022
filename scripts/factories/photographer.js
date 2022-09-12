@@ -55,5 +55,6 @@ function photographerFactory(data) {
         div.appendChild(img);
         return (div);
     }
+
     return { getUserCardDOM, getHeader }
 }

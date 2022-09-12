@@ -40,22 +40,28 @@ async function getMedia() {
 }
 
 async function displayData(photographer, medias) {
-
     const mainHeader = document.querySelector('#main');
-
-    console.log(mainHeader);
-
     const photographerModel = photographerFactory(photographer);
     const userHeaderDOM = photographerModel.getHeader();
     mainHeader.appendChild(userHeaderDOM);
 
     const mediaSection = document.querySelector("#grid_card");
+    const mainLikes = document.querySelector('#footer');
+    let mediaModel;
+    let totalLikes = 0;
+    let totalPrice = 0;
 
     medias.forEach((media) => {
-        const mediaModel = mediaFactory(media);
+        mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediaSection.appendChild(mediaCardDOM);
+
+        totalLikes += mediaModel.getLikes();
+        totalPrice += mediaModel.getPrice();
     });
+
+    const likeDOM = mediaModel.displayLikes(totalLikes, totalPrice);
+    mainLikes.appendChild(likeDOM);
 }
 
 async function init() {
