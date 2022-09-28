@@ -203,6 +203,7 @@ form input, textarea {
     object-fit: cover;
     height: 25vw;
     width: 100%;
+    cursor: pointer;
 }
 
 .card video {
@@ -211,6 +212,7 @@ form input, textarea {
     height: 25vw;
     width: 100%;
     display: block;
+    cursor: pointer;
 }
 .card h3 {
     font-size: 24px;
@@ -228,6 +230,7 @@ form input, textarea {
     display: flex;
     justify-content: space-between;
 }
+
 .flex {
     display: flex;
     justify-content: space-between;
@@ -289,10 +292,15 @@ form input, textarea {
     padding: 20px 0;
     background-color: rgba(84, 84, 84, 0.5);
 }
+
+#lightbox_modal.activeLightbox {
+    display: block;
+}
+
+
 .lightbox {
     height: 90vw;
     width: 90vw;
-    padding: 6%;
     object-fit: cover;
     margin: 0 auto;
     position: relative;
@@ -300,7 +308,7 @@ form input, textarea {
 
 .lightbox img {
     width: 60vw;
-    height: 90%;
+    height: 90vh;
     object-fit: cover;
     margin: 0 auto;
 }

@@ -22,7 +22,7 @@ function photographerFactory(data) {
         a.href = `photographer-page.html?id=${newUrl}`;
         a.appendChild(img);
         a.appendChild(h2);
-        article.appendChild(h2);
+        article.appendChild(a);
         article.appendChild(h3);
         article.appendChild(p);
         article.appendChild(h4);

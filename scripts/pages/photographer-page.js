@@ -2,6 +2,8 @@
 const rotateButton = document.querySelector('.fa-angle-down');
 const hiddenActive = document.querySelectorAll(".hidden");
 const button = document.querySelector('#name_select');
+let lightbox = document.querySelector('#lightbox_modal');
+
 
 let params = (new URL(document.location)).searchParams;
 const photographerId = params.get('id');
@@ -13,7 +15,9 @@ button.addEventListener('click', () => {
     }
     button.classList.toggle('activeButton');
     rotateButton.classList.toggle('rotate-active');
-})
+});
+
+
 
 async function getMedia() {
     fetch('./data/photographers.json')
@@ -56,12 +60,25 @@ async function displayData(photographer, medias) {
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediaSection.appendChild(mediaCardDOM);
 
+        mediaCardDOM.addEventListener('click', () => {
+            lightbox.classList.toggle('activeLightbox');
+            console.log(mediaCardDOM.childNodes);
+            let childCardData = mediaCardDOM.childNodes[0];
+            let childVideoCardData = childCardData.childNodes[0];
+            if (childCardData.dataset.type === 'img') {
+                lightbox.appendChild(mediaModel.showLightbox(childCardData.dataset.title, childCardData.dataset.url, childCardData.dataset.type));
+            } else {
+                lightbox.appendChild(medialModel.showLightbox((childVideoCardData.dataset.title, childVideoCardData.dataset.url, childVideoCardData.dataset.type)))
+            }
+        });
+
         totalLikes += mediaModel.getLikes();
         totalPrice += mediaModel.getPrice();
     });
 
     const likeDOM = mediaModel.displayLikes(totalLikes, totalPrice);
     mainLikes.appendChild(likeDOM);
+
 }
 
 async function init() {
