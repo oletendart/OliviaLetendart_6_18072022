@@ -12,17 +12,17 @@ function mediaFactory(data) {
         if(image) {
             img.setAttribute("src",`assets/photographers/${photographerId}/` + image)
             img.setAttribute("alt", title);
-            img.setAttribute('data-url', `assets/photographers/${photographerId}/` + image);
-            img.setAttribute('data-type', 'img');
-            img.setAttribute('data-title', title);
+            div.setAttribute('data-url', `assets/photographers/${photographerId}/` + image);
+            div.setAttribute('data-type', 'img');
+            div.setAttribute('data-title', title);
             div.appendChild(img);
         } else {
             source.setAttribute("src", `assets/photographers/${photographerId}/` + video);
             source.setAttribute('type', "video/mp4");
             source.setAttribute('alt', title);
-            source.setAttribute('data-url', `assets/photographers/${photographerId}/` + video);
-            source.setAttribute('data-type', 'video');
-            source.setAttribute('data-title', title);
+            div.setAttribute('data-url', `assets/photographers/${photographerId}/` + video);
+            div.setAttribute('data-type', 'video');
+            div.setAttribute('data-title', title);
             videoContainer.appendChild(source);
             div.appendChild(videoContainer);
         }
@@ -72,13 +72,13 @@ function mediaFactory(data) {
         const img = document.createElement('img');
         const videoContainer = document.createElement('video');
         const source = document.createElement("source");
-        if(type === img) {
+        if(type === 'img') {
             img.setAttribute('src', url);
             img.setAttribute('alt', title);
             div.appendChild(img);
         } else {
+            videoContainer.setAttribute('controls', '');
             source.setAttribute("src", url);
-            source.setAttribute('controls', '');
             source.setAttribute('type', "video/mp4");
             source.setAttribute('alt', title);
             videoContainer.appendChild(source);

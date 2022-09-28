@@ -62,14 +62,8 @@ async function displayData(photographer, medias) {
 
         mediaCardDOM.addEventListener('click', () => {
             lightbox.classList.toggle('activeLightbox');
-            console.log(mediaCardDOM.childNodes);
-            let childCardData = mediaCardDOM.childNodes[0];
-            let childVideoCardData = childCardData.childNodes[0];
-            if (childCardData.dataset.type === 'img') {
-                lightbox.appendChild(mediaModel.showLightbox(childCardData.dataset.title, childCardData.dataset.url, childCardData.dataset.type));
-            } else {
-                lightbox.appendChild(medialModel.showLightbox((childVideoCardData.dataset.title, childVideoCardData.dataset.url, childVideoCardData.dataset.type)))
-            }
+            console.log(mediaCardDOM.dataset.title);
+            lightbox.appendChild(mediaModel.showLightbox(mediaCardDOM.dataset.title, mediaCardDOM.dataset.url, mediaCardDOM.dataset.type));
         });
 
         totalLikes += mediaModel.getLikes();

@@ -313,6 +313,14 @@ form input, textarea {
     margin: 0 auto;
 }
 
+.lightbox video {
+    width: 60vw;
+    height: 90vh;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+}
+
 #lightbox_modal h5 {
     font-size: 24px;
     line-height: 32px;
