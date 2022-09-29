@@ -54,6 +54,7 @@ async function displayData(photographer, medias) {
     let mediaModel;
     let totalLikes = 0;
     let totalPrice = 0;
+    let close;
 
     medias.forEach((media) => {
         mediaModel = mediaFactory(media);
@@ -62,8 +63,13 @@ async function displayData(photographer, medias) {
 
         mediaCardDOM.addEventListener('click', () => {
             lightbox.classList.toggle('activeLightbox');
-            console.log(mediaCardDOM.dataset.title);
             lightbox.appendChild(mediaModel.showLightbox(mediaCardDOM.dataset.title, mediaCardDOM.dataset.url, mediaCardDOM.dataset.type));
+
+            close = document.querySelector('#close');
+            close.addEventListener('click', () => {
+                lightbox.innerHTML = "";
+                lightbox.classList.toggle('activeLightbox');
+            });
         });
 
         totalLikes += mediaModel.getLikes();

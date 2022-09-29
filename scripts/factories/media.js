@@ -90,8 +90,8 @@ function mediaFactory(data) {
         const h5 = document.createElement('h5');
         previous.setAttribute('class', 'fas fa-angle-left icon_lightbox');
         next.setAttribute('class', 'fas fa-angle-right icon_lightbox');
-        close.setAttribute('aria-label', 'close');
         close.setAttribute('class', 'fas fa-times icon_lightbox');
+        close.setAttribute('id', 'close');
         h5.textContent = title;
         div.appendChild(previous);
         div.appendChild(close);
