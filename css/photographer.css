@@ -334,6 +334,7 @@ form input, textarea {
     width: auto;
     color: #901C1C;
     font-size: 48px;
+    cursor: pointer;
 }
 .lightbox .fa-angle-left {
     position: absolute;
@@ -353,5 +354,4 @@ form input, textarea {
     position: absolute;
     top: 0;
     left: calc(100% - 48px);
-    cursor: pointer;
 }

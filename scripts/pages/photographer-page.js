@@ -4,6 +4,7 @@ const hiddenActive = document.querySelectorAll(".hidden");
 const button = document.querySelector('#name_select');
 let lightbox = document.querySelector('#lightbox_modal');
 
+let currentElement;
 
 let params = (new URL(document.location)).searchParams;
 const photographerId = params.get('id');
@@ -43,6 +44,7 @@ async function getMedia() {
         .catch(error => console.log("Erreur : " + error));
 }
 
+
 async function displayData(photographer, medias) {
     const mainHeader = document.querySelector('#main');
     const photographerModel = photographerFactory(photographer);
@@ -55,22 +57,51 @@ async function displayData(photographer, medias) {
     let totalLikes = 0;
     let totalPrice = 0;
     let close;
+    let nextElement;
+
+    console.log(medias);
 
     medias.forEach((media) => {
         mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediaSection.appendChild(mediaCardDOM);
+        console.log(medias)
+        mediaCardDOM.addEventListener('click', (event) => {
+            currentElement = media.id;
 
-        mediaCardDOM.addEventListener('click', () => {
             lightbox.classList.toggle('activeLightbox');
-            lightbox.appendChild(mediaModel.showLightbox(mediaCardDOM.dataset.title, mediaCardDOM.dataset.url, mediaCardDOM.dataset.type));
+            console.log(event.target.parentNode)
+
+            function displayLightbox() { //index
+                // l'id actuel au click data-id
+                // on cherche l'id dans medias pour récupérer
+
+                lightbox.appendChild(mediaModel.showLightbox(mediaCardDOM.dataset.title, mediaCardDOM.dataset.url, mediaCardDOM.dataset.type));
+            }
+
+            displayLightbox();
+
+            function next(id) {
+                let index = medias.findIndex(element => element.id == id);
+                console.log(index);
+                currentElement = medias[index + 1];
+                console.log(currentElement);
+                displayLightbox();
+            }
+
+            nextElement = document.querySelector("#next");
+            nextElement.addEventListener('click', () => {
+                next(currentElement);
+            })
 
             close = document.querySelector('#close');
             close.addEventListener('click', () => {
                 lightbox.innerHTML = "";
                 lightbox.classList.toggle('activeLightbox');
             });
+
         });
+
 
         totalLikes += mediaModel.getLikes();
         totalPrice += mediaModel.getPrice();
@@ -80,6 +111,7 @@ async function displayData(photographer, medias) {
     mainLikes.appendChild(likeDOM);
 
 }
+
 
 async function init() {
     await getMedia();
