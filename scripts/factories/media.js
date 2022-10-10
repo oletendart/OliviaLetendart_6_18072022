@@ -1,6 +1,6 @@
 function mediaFactory(data) {
 
-    const {title, image, photographerId, id, video, likes, date, price} = data;
+    const {title, image, photographerId, id, video, likes, price} = data;
 
     const urlImg = 'assets/photographers/' + photographerId + '/';
 
@@ -102,14 +102,6 @@ function mediaFactory(data) {
         div.appendChild(next);
         div.appendChild(h5);
         return (div)
-
-    }
-
-    function nextImage() {
-
-    }
-
-    function previousImage() {
 
     }
 

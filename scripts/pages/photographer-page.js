@@ -32,7 +32,7 @@ async function getMedia() {
             const medias = data.media.filter((media) => {
                     if (media.photographerId === photographer.id) {
                         return media;
-                    } 
+                    }
                 }
             );
 
@@ -108,8 +108,6 @@ async function displayData(photographer, medias) {
                 document.getElementById("lightbox_modal").innerHTML = "";
                 lightbox.appendChild(mediaModel.showLightbox(next.title, url, type));
 
-                let nextId = nextElement.id;
-                //displayLightbox(nextId);
             })
 
             close = document.querySelector('#close');
