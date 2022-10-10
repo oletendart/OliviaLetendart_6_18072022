@@ -1,6 +1,8 @@
 function mediaFactory(data) {
 
-    const { title, image, photographerId, id, video, likes, date, price } = data;
+    const {title, image, photographerId, id, video, likes, date, price} = data;
+
+    const urlImg = 'assets/photographers/' + photographerId + '/';
 
     function getMediaCardDOM() {
         const div = document.createElement('div');
@@ -9,10 +11,10 @@ function mediaFactory(data) {
         const videoContainer = document.createElement('video');
         const source = document.createElement("source");
         const divI = document.createElement('div');
-        if(image) {
-            img.setAttribute("src",`assets/photographers/${photographerId}/` + image)
+        if (image) {
+            img.setAttribute("src", urlImg + image)
             img.setAttribute("alt", title);
-            div.setAttribute('data-url', `assets/photographers/${photographerId}/` + image);
+            div.setAttribute('data-url', image);
             div.setAttribute('data-type', 'img');
             div.setAttribute('data-title', title);
             div.appendChild(img);
@@ -26,6 +28,7 @@ function mediaFactory(data) {
             videoContainer.appendChild(source);
             div.appendChild(videoContainer);
         }
+        div.setAttribute('data-id', id);
         const flex = document.createElement('div');
         flex.setAttribute("class", "flex");
         const h3 = document.createElement('h3');
@@ -72,8 +75,8 @@ function mediaFactory(data) {
         const img = document.createElement('img');
         const videoContainer = document.createElement('video');
         const source = document.createElement("source");
-        if(type === 'img') {
-            img.setAttribute('src', url);
+        if (type === 'img') {
+            img.setAttribute('src', urlImg + url); // j'ai changé ici
             img.setAttribute('alt', title);
             div.appendChild(img);
         } else {
@@ -110,5 +113,5 @@ function mediaFactory(data) {
 
     }
 
-    return { getMediaCardDOM, displayLikes, getLikes, getPrice, showLightbox }
+    return {getMediaCardDOM, displayLikes, getLikes, getPrice, showLightbox}
 }

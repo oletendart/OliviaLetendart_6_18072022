@@ -19,7 +19,6 @@ button.addEventListener('click', () => {
 });
 
 
-
 async function getMedia() {
     fetch('./data/photographers.json')
         .then(response => response.json())
@@ -31,13 +30,12 @@ async function getMedia() {
             });
 
             const medias = data.media.filter((media) => {
-                    if(media.photographerId === photographer.id) {
-                       return media;
-                    } else {
-                        console.log("erreur");
-                    }
+                    if (media.photographerId === photographer.id) {
+                        return media;
+                    } 
                 }
             );
+
             displayData(photographer, medias);
 
         })
@@ -65,33 +63,53 @@ async function displayData(photographer, medias) {
         mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediaSection.appendChild(mediaCardDOM);
-        console.log(medias)
         mediaCardDOM.addEventListener('click', (event) => {
             currentElement = media.id;
 
             lightbox.classList.toggle('activeLightbox');
             console.log(event.target.parentNode)
+            let click = event.target.parentNode;
 
-            function displayLightbox() { //index
-                // l'id actuel au click data-id
-                // on cherche l'id dans medias pour récupérer
 
-                lightbox.appendChild(mediaModel.showLightbox(mediaCardDOM.dataset.title, mediaCardDOM.dataset.url, mediaCardDOM.dataset.type));
-            }
+            // l'id actuel au click data-id
+            /*
+            let idCurrent = click.dataset.id;
+            console.log(idCurrent);
+            */
 
-            displayLightbox();
+            // on cherche l'id dans medias pour récupérer
+            /*
+                        let newIndex = medias.find(element => element.id === id);
+                        console.log(newIndex);
+                        if (newIndex != undefined) {
+                            console.log(click);
+                        }
+            */
+            console.log(click.dataset.type)
+            lightbox.appendChild(mediaModel.showLightbox(click.dataset.title, click.dataset.url, click.dataset.type));
 
-            function next(id) {
-                let index = medias.findIndex(element => element.id == id);
-                console.log(index);
-                currentElement = medias[index + 1];
-                console.log(currentElement);
-                displayLightbox();
-            }
 
             nextElement = document.querySelector("#next");
+            console.log(nextElement)
             nextElement.addEventListener('click', () => {
-                next(currentElement);
+                console.log('je click');
+                let index = medias.findIndex(element => element.id === currentElement);
+                next = medias[index + 1];
+                currentElement = next.id;
+                console.log(next);
+
+                if (next.image) {
+                    url = next.image;
+                    type = "img";
+                } else if (next.video) {
+                    url = "tata";
+                    type = "video";
+                }
+                document.getElementById("lightbox_modal").innerHTML = "";
+                lightbox.appendChild(mediaModel.showLightbox(next.title, url, type));
+
+                let nextId = nextElement.id;
+                //displayLightbox(nextId);
             })
 
             close = document.querySelector('#close');

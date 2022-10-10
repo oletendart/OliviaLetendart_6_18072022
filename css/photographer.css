@@ -290,7 +290,7 @@ form input, textarea {
     top: 0;
     left: 0;
     padding: 20px 0;
-    background-color: rgba(84, 84, 84, 0.5);
+    background-color: white;
 }
 
 #lightbox_modal.activeLightbox {
