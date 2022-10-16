@@ -70,44 +70,62 @@ async function displayData(photographer, medias) {
             console.log(event.target.parentNode)
             let click = event.target.parentNode;
 
-
             // l'id actuel au click data-id
-            /*
-            let idCurrent = click.dataset.id;
-            console.log(idCurrent);
-            */
+            //let idCurrent = click.dataset.id;
+            element = click.dataset.id;
+            console.log(element);
+            let index = medias.findIndex(p => p.id == element);
+            console.log(index);
 
             // on cherche l'id dans medias pour récupérer
-            /*
-                        let newIndex = medias.find(element => element.id === id);
-                        console.log(newIndex);
-                        if (newIndex != undefined) {
-                            console.log(click);
-                        }
-            */
-            console.log(click.dataset.type)
+
+
+            console.log(click.dataset.type, click.dataset.url, click.dataset.title);
             lightbox.appendChild(mediaModel.showLightbox(click.dataset.title, click.dataset.url, click.dataset.type));
 
+            //let index = medias.find(element => element.id === nextElement);
+            //console.log(index);
 
-            nextElement = document.querySelector("#next");
-            console.log(nextElement)
-            nextElement.addEventListener('click', () => {
-                console.log('je click');
-                let index = medias.findIndex(element => element.id === currentElement);
-                next = medias[index + 1];
-                currentElement = next.id;
+            let next = document.querySelector("#next");
+            next.addEventListener('click', (event) => {
+                console.log('suivant');
+
+                /*let nextIndex = index + 1;
+                console.log(nextIndex);*/
+                console.log(click);
+
+                let nextIndex = index + 1;
+                console.log(nextIndex);
+
+
+                let nextItem = medias[index + 1];
+                console.log(nextItem);
+
+                //lightbox.appendChild(mediaModel.showLightbox(next.title, url, type));
                 console.log(next);
 
-                if (next.image) {
-                    url = next.image;
-                    type = "img";
-                } else if (next.video) {
-                    url = "tata";
-                    type = "video";
-                }
-                document.getElementById("lightbox_modal").innerHTML = "";
-                lightbox.appendChild(mediaModel.showLightbox(next.title, url, type));
+                /* let index = medias.findIndex(element => element.id === currentElement);
+                 next = medias[index + 1];
+                 currentElement = next.id;
+                 console.log(next);
 
+                 if (next.image) {
+                     url = next.image;
+                     type = "img";
+                 } else if (next.video) {
+                     url = "tata";
+                     type = "video";
+                 }
+                 document.getElementById("lightbox_modal").innerHTML = "";
+                 lightbox.appendChild(mediaModel.showLightbox(next.title, url, type));*/
+            });
+
+            let previous = document.querySelector('#previous');
+            previous.addEventListener('click', () => {
+                console.log('précedent');
+
+                let previousIndex = index - 1;
+                console.log(previousIndex)
             })
 
             close = document.querySelector('#close');

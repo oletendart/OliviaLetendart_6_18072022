@@ -19,10 +19,10 @@ function mediaFactory(data) {
             div.setAttribute('data-title', title);
             div.appendChild(img);
         } else {
-            source.setAttribute("src", `assets/photographers/${photographerId}/` + video);
+            source.setAttribute("src", urlImg + video);
             source.setAttribute('type', "video/mp4");
             source.setAttribute('alt', title);
-            div.setAttribute('data-url', `assets/photographers/${photographerId}/` + video);
+            div.setAttribute('data-url',  video);
             div.setAttribute('data-type', 'video');
             div.setAttribute('data-title', title);
             videoContainer.appendChild(source);
@@ -81,7 +81,7 @@ function mediaFactory(data) {
             div.appendChild(img);
         } else {
             videoContainer.setAttribute('controls', '');
-            source.setAttribute("src", url);
+            source.setAttribute("src", urlImg + url);
             source.setAttribute('type', "video/mp4");
             source.setAttribute('alt', title);
             videoContainer.appendChild(source);
@@ -92,7 +92,10 @@ function mediaFactory(data) {
         const close = document.createElement('i');
         const h5 = document.createElement('h5');
         previous.setAttribute('class', 'fas fa-angle-left icon_lightbox');
+        previous.setAttribute('id', 'previous');
+        previous.setAttribute('data-index', previous)
         next.setAttribute('class', 'fas fa-angle-right icon_lightbox');
+        next.setAttribute('data-index', next);
         next.setAttribute('id', 'next');
         close.setAttribute('class', 'fas fa-times icon_lightbox');
         close.setAttribute('id', 'close');
