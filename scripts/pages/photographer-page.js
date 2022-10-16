@@ -80,13 +80,32 @@ async function displayData(photographer, medias) {
 
 
             console.log(click.dataset.type, click.dataset.url, click.dataset.title);
-            lightbox.appendChild(mediaModel.showLightbox(click.dataset.title, click.dataset.url, click.dataset.type));
+            let div = mediaModel.createLightbox(click.dataset.title, click.dataset.url, click.dataset.type);
+            lightbox.appendChild(div);
+            div = mediaModel.updateLightbox(div, click.dataset.title, click.dataset.url, click.dataset.type);
+            lightbox.appendChild(div);
 
             //let index = medias.find(element => element.id === nextElement);
             //console.log(index);
 
             nextElement = document.querySelector("#next");
             nextElement.addEventListener('click', () => {
+
+                let index = medias.findIndex(element => element.id === currentElement);
+                let nextItem = medias[index + 1];
+                currentElement = nextItem.id;
+                let url, type;
+
+                if (nextItem.image) {
+                    url = nextItem.image;
+                    type = "img";
+                } else if (nextItem.video) {
+                    url = "tata";
+                    type = "video";
+                }
+
+                div = mediaModel.updateLightbox(div, nextItem.title, url, type);
+                lightbox.appendChild(div);
 
                /* let index = medias.findIndex(element => element.id === currentElement);
                  let nextItem = medias[index + 1];

@@ -69,16 +69,14 @@ function mediaFactory(data) {
         return price;
     }
 
-    function showLightbox(title, url, type) {
-        console.log(title, url, type)
+    function createLightbox(title, url, type) {
         const div = document.createElement('div');
         div.setAttribute('class', 'lightbox');
         const img = document.createElement('img');
         const videoContainer = document.createElement('video');
         const source = document.createElement("source");
         if (type === 'img') {
-            img.setAttribute('src', urlImg + url); // j'ai changé ici
-            img.setAttribute('alt', title);
+            img.setAttribute('id', 'toggleImg');
             div.appendChild(img);
         } else {
             videoContainer.setAttribute('controls', '');
@@ -92,6 +90,7 @@ function mediaFactory(data) {
         const next = document.createElement('i');
         const close = document.createElement('i');
         const h5 = document.createElement('h5');
+        h5.setAttribute('id', 'h5Text');
         previous.setAttribute('class', 'fas fa-angle-left icon_lightbox');
         previous.setAttribute('id', 'previous');
         previous.setAttribute('data-index', previous)
@@ -100,13 +99,27 @@ function mediaFactory(data) {
         next.setAttribute('id', 'next');
         close.setAttribute('class', 'fas fa-times icon_lightbox');
         close.setAttribute('id', 'close');
-        h5.textContent = title;
         div.appendChild(previous);
         div.appendChild(close);
         div.appendChild(next);
         div.appendChild(h5);
         return (div)
+
     }
 
-    return {getMediaCardDOM, displayLikes, getLikes, getPrice, showLightbox}
+    function updateLightbox(div, title, url, type) {
+        if (type === 'img') {
+            let img = document.querySelector("#toggleImg");
+            img.setAttribute('src', urlImg + url);
+            img.setAttribute('alt', title);
+            div.appendChild(img);
+        }
+        let h5 = document.querySelector("#h5Text");
+        h5.textContent = title;
+        div.appendChild(h5);
+        return (div)
+
+    }
+
+    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox}
 }
