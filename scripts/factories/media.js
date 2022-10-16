@@ -70,6 +70,7 @@ function mediaFactory(data) {
     }
 
     function showLightbox(title, url, type) {
+        console.log(title, url, type)
         const div = document.createElement('div');
         div.setAttribute('class', 'lightbox');
         const img = document.createElement('img');
@@ -105,7 +106,6 @@ function mediaFactory(data) {
         div.appendChild(next);
         div.appendChild(h5);
         return (div)
-
     }
 
     return {getMediaCardDOM, displayLikes, getLikes, getPrice, showLightbox}

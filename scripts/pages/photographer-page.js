@@ -54,8 +54,7 @@ async function displayData(photographer, medias) {
     let mediaModel;
     let totalLikes = 0;
     let totalPrice = 0;
-    let close;
-    let nextElement;
+    let close, nextElement;
 
     console.log(medias);
 
@@ -72,7 +71,7 @@ async function displayData(photographer, medias) {
 
             // l'id actuel au click data-id
             //let idCurrent = click.dataset.id;
-            element = click.dataset.id;
+            let element = click.dataset.id;
             console.log(element);
             let index = medias.findIndex(p => p.id == element);
             console.log(index);
@@ -86,52 +85,39 @@ async function displayData(photographer, medias) {
             //let index = medias.find(element => element.id === nextElement);
             //console.log(index);
 
-            let next = document.querySelector("#next");
-            next.addEventListener('click', (event) => {
-                console.log('suivant');
+            nextElement = document.querySelector("#next");
+            nextElement.addEventListener('click', () => {
 
-                /*let nextIndex = index + 1;
-                console.log(nextIndex);*/
-                console.log(click);
+               /* let index = medias.findIndex(element => element.id === currentElement);
+                 let nextItem = medias[index + 1];
+                 currentElement = nextItem.id;
+                 console.log(nextItem);
+                 let url, type;
 
-                let nextIndex = index + 1;
-                console.log(nextIndex);
-
-
-                let nextItem = medias[index + 1];
-                console.log(nextItem);
-
-                //lightbox.appendChild(mediaModel.showLightbox(next.title, url, type));
-                console.log(next);
-
-                /* let index = medias.findIndex(element => element.id === currentElement);
-                 next = medias[index + 1];
-                 currentElement = next.id;
-                 console.log(next);
-
-                 if (next.image) {
-                     url = next.image;
+                 if (nextItem.image) {
+                     url = nextItem.image;
                      type = "img";
-                 } else if (next.video) {
-                     url = "tata";
+                 } else if (nextItem.video) {
+                     url = nextItem.video;
                      type = "video";
                  }
-                 document.getElementById("lightbox_modal").innerHTML = "";
-                 lightbox.appendChild(mediaModel.showLightbox(next.title, url, type));*/
+                 lightbox.innerHTML = "";
+                 lightbox.appendChild(mediaModel.showLightbox(nextItem.title, url, type));
+*/
             });
 
-            let previous = document.querySelector('#previous');
+           /*let previous = document.querySelector('#previous');
             previous.addEventListener('click', () => {
                 console.log('précedent');
 
                 let previousIndex = index - 1;
                 console.log(previousIndex)
-            })
+            })*/
 
             close = document.querySelector('#close');
             close.addEventListener('click', () => {
-                lightbox.innerHTML = "";
-                lightbox.classList.toggle('activeLightbox');
+                    lightbox.innerHTML = "";
+                    lightbox.classList.toggle('activeLightbox');
             });
 
         });
