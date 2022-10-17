@@ -66,7 +66,6 @@ async function displayData(photographer, medias) {
             currentElement = media.id;
 
             lightbox.classList.toggle('activeLightbox');
-            console.log(event.target.parentNode)
             let click = event.target.parentNode;
 
             let div = mediaModel.createLightbox();
@@ -74,12 +73,10 @@ async function displayData(photographer, medias) {
             div = mediaModel.updateLightbox(div, click.dataset.title, click.dataset.url, click.dataset.type);
             lightbox.appendChild(div);
 
-
             nextElement = document.querySelector("#next");
             nextElement.addEventListener('click', () => {
-
                 let index = medias.findIndex(element => element.id === currentElement);
-                let nextItem = mediaModel.calculateIndex(index, medias.length, true);
+                let nextItem = medias[mediaModel.calculateIndex(index, medias.length, true)];
                 currentElement = nextItem.id;
                 let url, type;
 
@@ -99,7 +96,7 @@ async function displayData(photographer, medias) {
             let previous = document.querySelector('#previous');
             previous.addEventListener('click', () => {
                 let index = medias.findIndex(element => element.id === currentElement);
-                let previousItem = mediaModel.calculateIndex(index, medias.length, false);
+                let previousItem = medias[mediaModel.calculateIndex(index, medias.length, false)];
                 currentElement = previousItem.id;
                 let url, type;
 
