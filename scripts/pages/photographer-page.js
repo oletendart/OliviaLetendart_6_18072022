@@ -79,7 +79,7 @@ async function displayData(photographer, medias) {
             nextElement.addEventListener('click', () => {
 
                 let index = medias.findIndex(element => element.id === currentElement);
-                let nextItem = medias[index + 1];
+                let nextItem = mediaModel.calculateIndex(index, medias.length, true);
                 currentElement = nextItem.id;
                 let url, type;
 
@@ -99,7 +99,7 @@ async function displayData(photographer, medias) {
             let previous = document.querySelector('#previous');
             previous.addEventListener('click', () => {
                 let index = medias.findIndex(element => element.id === currentElement);
-                let previousItem = medias[index - 1];
+                let previousItem = mediaModel.calculateIndex(index, medias.length, false);
                 currentElement = previousItem.id;
                 let url, type;
 

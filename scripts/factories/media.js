@@ -74,7 +74,7 @@ function mediaFactory(data) {
         const div = document.createElement('div');
         div.setAttribute('class', 'lightbox');
         // Create the media
-        const media = document.createElement('img');
+        const media = document.createElement('div');
         media.setAttribute('id', 'toggleMedia');
         // Create previous/next/close
         const previous = document.createElement('i');
@@ -101,14 +101,18 @@ function mediaFactory(data) {
 
     function updateLightbox(div, title, url, type) {
         let media = document.querySelector("#toggleMedia");
-        const videoContainer = document.createElement('video');
-        const source = document.createElement("source");
+        media.innerHTML = "";
         if (type === 'img') {
-            media.setAttribute('src', urlImg + url);
-            media.setAttribute('alt', title);
+            let img = document.createElement('img');
+            img.setAttribute('src', urlImg + url);
+            img.setAttribute('alt', title);
+            media.appendChild(img);
             div.appendChild(media);
         } else {
+            const videoContainer = document.createElement('video');
+            const source = document.createElement("source");
             videoContainer.setAttribute('id', 'toggleMedia');
+            videoContainer.setAttribute('controls', '');
             source.setAttribute("src", urlImg + url);
             source.setAttribute('type', "video/mp4");
             source.setAttribute('alt', title);
@@ -122,5 +126,21 @@ function mediaFactory(data) {
         return (div)
     }
 
-    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox}
+    function calculateIndex(index, length, sens) {
+        if (sens === true) {
+            if ((index + 1) < length) {
+                return index + 1;
+            } else {
+                return 0;
+            }
+        } else {
+            if ((index - 1) > 0) {
+                return index - 1;
+            } else {
+                return length - 1;
+            }
+        }
+    }
+
+    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox, calculateIndex}
 }
