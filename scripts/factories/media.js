@@ -69,34 +69,28 @@ function mediaFactory(data) {
         return price;
     }
 
-    function createLightbox(title, url, type) {
+    function createLightbox() {
+        // Create the div
         const div = document.createElement('div');
         div.setAttribute('class', 'lightbox');
-        const img = document.createElement('img');
-        const videoContainer = document.createElement('video');
-        const source = document.createElement("source");
-        if (type === 'img') {
-            img.setAttribute('id', 'toggleMedia');
-            div.appendChild(img);
-        } else {
-            videoContainer.setAttribute('id', 'toggleMedia');
-            source.setAttribute("src", urlImg + url);
-            source.setAttribute('type', "video/mp4");
-            source.setAttribute('alt', title);
-            videoContainer.appendChild(source);
-            div.appendChild(videoContainer);
-        }
+        // Create the media
+        const media = document.createElement('img');
+        media.setAttribute('id', 'toggleMedia');
+        // Create previous/next/close
         const previous = document.createElement('i');
-        const next = document.createElement('i');
-        const close = document.createElement('i');
-        const h5 = document.createElement('h5');
-        h5.setAttribute('id', 'h5Text');
         previous.setAttribute('class', 'fas fa-angle-left icon_lightbox');
         previous.setAttribute('id', 'previous');
+        const next = document.createElement('i');
         next.setAttribute('class', 'fas fa-angle-right icon_lightbox');
         next.setAttribute('id', 'next');
+        const close = document.createElement('i');
         close.setAttribute('class', 'fas fa-times icon_lightbox');
         close.setAttribute('id', 'close');
+        //Create the title h5
+        const h5 = document.createElement('h5');
+        h5.setAttribute('id', 'h5Text');
+        // Adding to div
+        div.appendChild(media);
         div.appendChild(previous);
         div.appendChild(close);
         div.appendChild(next);
@@ -107,24 +101,25 @@ function mediaFactory(data) {
 
     function updateLightbox(div, title, url, type) {
         let media = document.querySelector("#toggleMedia");
+        const videoContainer = document.createElement('video');
         const source = document.createElement("source");
         if (type === 'img') {
             media.setAttribute('src', urlImg + url);
             media.setAttribute('alt', title);
             div.appendChild(media);
         } else {
-            media.setAttribute('controls', '');
+            videoContainer.setAttribute('id', 'toggleMedia');
             source.setAttribute("src", urlImg + url);
             source.setAttribute('type', "video/mp4");
             source.setAttribute('alt', title);
-            media.appendChild(source);
+            videoContainer.appendChild(source);
+            media.appendChild(videoContainer);
             div.appendChild(media);
         }
         let h5 = document.querySelector("#h5Text");
         h5.textContent = title;
         div.appendChild(h5);
         return (div)
-
     }
 
     return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox}

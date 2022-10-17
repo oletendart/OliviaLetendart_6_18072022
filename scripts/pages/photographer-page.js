@@ -69,24 +69,11 @@ async function displayData(photographer, medias) {
             console.log(event.target.parentNode)
             let click = event.target.parentNode;
 
-            // l'id actuel au click data-id
-            //let idCurrent = click.dataset.id;
-            let element = click.dataset.id;
-            console.log(element);
-            let index = medias.findIndex(p => p.id == element);
-            console.log(index);
-
-            // on cherche l'id dans medias pour récupérer
-
-
-            console.log(click.dataset.type, click.dataset.url, click.dataset.title);
-            let div = mediaModel.createLightbox(click.dataset.title, click.dataset.url, click.dataset.type);
+            let div = mediaModel.createLightbox();
             lightbox.appendChild(div);
             div = mediaModel.updateLightbox(div, click.dataset.title, click.dataset.url, click.dataset.type);
             lightbox.appendChild(div);
 
-            //let index = medias.find(element => element.id === nextElement);
-            //console.log(index);
 
             nextElement = document.querySelector("#next");
             nextElement.addEventListener('click', () => {
@@ -107,36 +94,31 @@ async function displayData(photographer, medias) {
                 div = mediaModel.updateLightbox(div, nextItem.title, url, type);
                 lightbox.appendChild(div);
 
-               /* let index = medias.findIndex(element => element.id === currentElement);
-                 let nextItem = medias[index + 1];
-                 currentElement = nextItem.id;
-                 console.log(nextItem);
-                 let url, type;
-
-                 if (nextItem.image) {
-                     url = nextItem.image;
-                     type = "img";
-                 } else if (nextItem.video) {
-                     url = nextItem.video;
-                     type = "video";
-                 }
-                 lightbox.innerHTML = "";
-                 lightbox.appendChild(mediaModel.showLightbox(nextItem.title, url, type));
-*/
             });
 
-           /*let previous = document.querySelector('#previous');
+            let previous = document.querySelector('#previous');
             previous.addEventListener('click', () => {
-                console.log('précedent');
+                let index = medias.findIndex(element => element.id === currentElement);
+                let previousItem = medias[index - 1];
+                currentElement = previousItem.id;
+                let url, type;
 
-                let previousIndex = index - 1;
-                console.log(previousIndex)
-            })*/
+                if (previousItem.image) {
+                    url = previousItem.image;
+                    type = "img";
+                } else if (previousItem.video) {
+                    url = previousItem.video;
+                    type = "video";
+                }
+
+                div = mediaModel.updateLightbox(div, previousItem.title, url, type);
+                lightbox.appendChild(div);
+            })
 
             close = document.querySelector('#close');
             close.addEventListener('click', () => {
-                    lightbox.innerHTML = "";
-                    lightbox.classList.toggle('activeLightbox');
+                lightbox.innerHTML = "";
+                lightbox.classList.toggle('activeLightbox');
             });
 
         });
