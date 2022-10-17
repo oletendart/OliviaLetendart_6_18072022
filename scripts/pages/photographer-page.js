@@ -100,7 +100,7 @@ async function displayData(photographer, medias) {
                     url = nextItem.image;
                     type = "img";
                 } else if (nextItem.video) {
-                    url = "tata";
+                    url = nextItem.video;
                     type = "video";
                 }
 

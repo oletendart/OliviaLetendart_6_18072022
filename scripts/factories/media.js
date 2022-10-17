@@ -76,10 +76,10 @@ function mediaFactory(data) {
         const videoContainer = document.createElement('video');
         const source = document.createElement("source");
         if (type === 'img') {
-            img.setAttribute('id', 'toggleImg');
+            img.setAttribute('id', 'toggleMedia');
             div.appendChild(img);
         } else {
-            videoContainer.setAttribute('controls', '');
+            videoContainer.setAttribute('id', 'toggleMedia');
             source.setAttribute("src", urlImg + url);
             source.setAttribute('type', "video/mp4");
             source.setAttribute('alt', title);
@@ -93,9 +93,7 @@ function mediaFactory(data) {
         h5.setAttribute('id', 'h5Text');
         previous.setAttribute('class', 'fas fa-angle-left icon_lightbox');
         previous.setAttribute('id', 'previous');
-        previous.setAttribute('data-index', previous)
         next.setAttribute('class', 'fas fa-angle-right icon_lightbox');
-        next.setAttribute('data-index', next);
         next.setAttribute('id', 'next');
         close.setAttribute('class', 'fas fa-times icon_lightbox');
         close.setAttribute('id', 'close');
@@ -108,11 +106,19 @@ function mediaFactory(data) {
     }
 
     function updateLightbox(div, title, url, type) {
+        let media = document.querySelector("#toggleMedia");
+        const source = document.createElement("source");
         if (type === 'img') {
-            let img = document.querySelector("#toggleImg");
-            img.setAttribute('src', urlImg + url);
-            img.setAttribute('alt', title);
-            div.appendChild(img);
+            media.setAttribute('src', urlImg + url);
+            media.setAttribute('alt', title);
+            div.appendChild(media);
+        } else {
+            media.setAttribute('controls', '');
+            source.setAttribute("src", urlImg + url);
+            source.setAttribute('type', "video/mp4");
+            source.setAttribute('alt', title);
+            media.appendChild(source);
+            div.appendChild(media);
         }
         let h5 = document.querySelector("#h5Text");
         h5.textContent = title;
