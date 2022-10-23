@@ -70,13 +70,10 @@ function mediaFactory(data) {
     }
 
     function createLightbox() {
-        // Create the div
         const div = document.createElement('div');
         div.setAttribute('class', 'lightbox');
-        // Create the media
         const media = document.createElement('div');
         media.setAttribute('id', 'toggleMedia');
-        // Create previous/next/close
         const previous = document.createElement('i');
         previous.setAttribute('class', 'fas fa-angle-left icon_lightbox');
         previous.setAttribute('id', 'previous');
@@ -86,10 +83,8 @@ function mediaFactory(data) {
         const close = document.createElement('i');
         close.setAttribute('class', 'fas fa-times icon_lightbox');
         close.setAttribute('id', 'close');
-        //Create the title h5
         const h5 = document.createElement('h5');
         h5.setAttribute('id', 'h5Text');
-        // Adding to div
         div.appendChild(media);
         div.appendChild(previous);
         div.appendChild(close);
@@ -142,9 +137,6 @@ function mediaFactory(data) {
         }
     }
 
-    function sortAtt(arr) {
-        return console.log(arr[0].likes);
-    }
 
-    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox, calculateIndex, sortAtt}
+    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox, calculateIndex}
 }

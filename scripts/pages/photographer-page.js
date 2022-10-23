@@ -123,14 +123,9 @@ async function displayData(photographer, medias) {
 
         });
 
-
         totalLikes += mediaModel.getLikes();
         totalPrice += mediaModel.getPrice();
     });
-
-    //console.log(medias.sort((a, b) => a.likes - b.likes));
-    //console.log(medias.sort((a,b) => ('' + a.title).localeCompare(b.title)));
-    //console.log(medias.sort((a,b) => ('' + a.date).localeCompare(b.date)));
 
     const likeDOM = mediaModel.displayLikes(totalLikes, totalPrice);
     mainLikes.appendChild(likeDOM);
@@ -139,15 +134,21 @@ async function displayData(photographer, medias) {
 
 popularity.addEventListener('click', () => {
     console.log('trier par : popularité (likes)');
-})
+    console.log(medias.sort((a, b) => a.likes - b.likes));
+    // mettre à jour displayData
+});
 
 date.addEventListener('click', () => {
     console.log("trier par : date (date)");
-})
+    console.log(medias.sort((a,b) => ('' + a.date).localeCompare(b.date)));
+    // mettre à jour displayData
+});
 
 title.addEventListener('click' , () => {
     console.log("trier par : titre (title)");
-})
+    console.log(medias.sort((a,b) => ('' + a.title).localeCompare(b.title)));
+    // mettre à jour displayData
+});
 
 
 async function init() {
