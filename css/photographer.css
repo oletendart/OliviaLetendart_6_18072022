@@ -189,6 +189,8 @@ form input, textarea {
 
 #list_image button.activeButton {
     flex-direction: column;
+    cursor: pointer;
+    z-index: 2;
 }
 
 #grid_card {

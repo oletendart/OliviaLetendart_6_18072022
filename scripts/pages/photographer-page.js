@@ -3,6 +3,9 @@ const rotateButton = document.querySelector('.fa-angle-down');
 const hiddenActive = document.querySelectorAll(".hidden");
 const button = document.querySelector('#name_select');
 let lightbox = document.querySelector('#lightbox_modal');
+const popularity = document.querySelector('#popularity');
+const date = document.querySelector('#date');
+const title = document.querySelector('#title');
 
 let currentElement;
 
@@ -125,10 +128,26 @@ async function displayData(photographer, medias) {
         totalPrice += mediaModel.getPrice();
     });
 
+    //console.log(medias.sort((a, b) => a.likes - b.likes));
+    //console.log(medias.sort((a,b) => ('' + a.title).localeCompare(b.title)));
+    //console.log(medias.sort((a,b) => ('' + a.date).localeCompare(b.date)));
+
     const likeDOM = mediaModel.displayLikes(totalLikes, totalPrice);
     mainLikes.appendChild(likeDOM);
 
 }
+
+popularity.addEventListener('click', () => {
+    console.log('trier par : popularité (likes)');
+})
+
+date.addEventListener('click', () => {
+    console.log("trier par : date (date)");
+})
+
+title.addEventListener('click' , () => {
+    console.log("trier par : titre (title)");
+})
 
 
 async function init() {

@@ -142,5 +142,9 @@ function mediaFactory(data) {
         }
     }
 
-    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox, calculateIndex}
+    function sortAtt(arr) {
+        return console.log(arr[0].likes);
+    }
+
+    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox, calculateIndex, sortAtt}
 }
