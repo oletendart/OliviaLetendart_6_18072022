@@ -61,7 +61,10 @@ async function displayData(photographer, medias) {
 
     console.log(medias);
 
-    medias.forEach((media) => {
+    // function à appeller (updateGrid)
+
+
+    /*medias.forEach((media) => {
         mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediaSection.appendChild(mediaCardDOM);
@@ -125,7 +128,7 @@ async function displayData(photographer, medias) {
 
         totalLikes += mediaModel.getLikes();
         totalPrice += mediaModel.getPrice();
-    });
+    }); */
 
     const likeDOM = mediaModel.displayLikes(totalLikes, totalPrice);
     mainLikes.appendChild(likeDOM);
@@ -135,13 +138,13 @@ async function displayData(photographer, medias) {
 popularity.addEventListener('click', () => {
     console.log('trier par : popularité (likes)');
     console.log(medias.sort((a, b) => a.likes - b.likes));
-    // mettre à jour displayData
+    // appeler la function updateGrid, en lui donnant la ligne précedente
 });
 
 date.addEventListener('click', () => {
     console.log("trier par : date (date)");
     console.log(medias.sort((a,b) => ('' + a.date).localeCompare(b.date)));
-    // mettre à jour displayData
+    // appeler la function updateGrid, en lui donnant la ligne précedente
 });
 
 title.addEventListener('click' , () => {
