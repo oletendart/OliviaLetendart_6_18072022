@@ -7,33 +7,11 @@ function mediaFactory(data) {
     function getMediaCardDOM() {
         const div = document.createElement('div');
         div.setAttribute("class", "card");
-        const media = document.createElement('div');
-        media.setAttribute('id', 'toggleMedia');
+        const img = document.createElement('img');
+        const videoContainer = document.createElement('video');
+        const source = document.createElement("source");
         const divI = document.createElement('div');
-        div.setAttribute('data-id', id);
-        const flex = document.createElement('div');
-        flex.setAttribute("class", "flex");
-        const h3 = document.createElement('h3');
-        h3.setAttribute('id', 'h3TextCard');
-        const h4 = document.createElement('h4');
-        h4.setAttribute('id', 'h4Likes');
-        const i = document.createElement('i');
-        i.setAttribute("class", "far fa-heart icon_love");
-        divI.appendChild(h4);
-        divI.appendChild(i);
-        flex.appendChild(h3);
-        flex.appendChild(divI);
-        div.appendChild(media);
-        div.appendChild(flex);
-        return (div)
-    }
-
-    function updateCardDOM(image, title, likes) {
-        let media = document.querySelector("#toggleMedia");
-        let div = document.createElement('div');
-        media.innerHTML = "";
         if (image) {
-            let img = document.createElement('img');
             img.setAttribute("src", urlImg + image)
             img.setAttribute("alt", title);
             div.setAttribute('data-url', image);
@@ -41,8 +19,6 @@ function mediaFactory(data) {
             div.setAttribute('data-title', title);
             div.appendChild(img);
         } else {
-            const videoContainer = document.createElement('video');
-            const source = document.createElement("source");
             source.setAttribute("src", urlImg + video);
             source.setAttribute('type', "video/mp4");
             source.setAttribute('alt', title);
@@ -52,10 +28,21 @@ function mediaFactory(data) {
             videoContainer.appendChild(source);
             div.appendChild(videoContainer);
         }
-        let h3 = document.querySelector("#h3TextCard");
-        let h4 = document.querySelector('#h4Likes');
+        div.setAttribute('data-id', id);
+        const flex = document.createElement('div');
+        flex.setAttribute("class", "flex");
+        const h3 = document.createElement('h3');
         h3.textContent = title;
+        const h4 = document.createElement('h4');
+        const i = document.createElement('i');
+        i.setAttribute("class", "far fa-heart icon_love");
         h4.textContent = likes;
+        divI.appendChild(h4);
+        divI.appendChild(i);
+        flex.appendChild(h3);
+        flex.appendChild(divI);
+        div.appendChild(flex);
+        return (div)
     }
 
     function displayLikes(totalLikes, totalPrice) {
@@ -151,5 +138,5 @@ function mediaFactory(data) {
     }
 
 
-    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox, calculateIndex, updateCardDOM}
+    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox, calculateIndex}
 }

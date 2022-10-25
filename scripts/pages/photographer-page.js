@@ -63,13 +63,8 @@ async function displayData(photographer, medias) {
 
     medias.forEach((media) => {
         mediaModel = mediaFactory(media);
-        let mediaCardDOM = mediaModel.getMediaCardDOM();
+        const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediaSection.appendChild(mediaCardDOM);
-        console.log(media.title, media.likes, media.image || media.video);
-        //mediaCardDOM = mediaModel.updateCardDOM();
-        //mediaSection.appendChild(mediaCardDOM);
-
-
         mediaCardDOM.addEventListener('click', (event) => {
             currentElement = media.id;
 
