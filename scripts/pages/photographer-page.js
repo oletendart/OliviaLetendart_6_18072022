@@ -6,8 +6,13 @@ let lightbox = document.querySelector('#lightbox_modal');
 const popularity = document.querySelector('#popularity');
 const date = document.querySelector('#date');
 const title = document.querySelector('#title');
+const mediaSection = document.querySelector("#grid_card");
 
 let currentElement;
+let mediaModel;
+let close, nextElement;
+let totalLikes = 0;
+let totalPrice = 0;
 
 let params = (new URL(document.location)).searchParams;
 const photographerId = params.get('id');
@@ -51,20 +56,21 @@ async function displayData(photographer, medias) {
     const photographerModel = photographerFactory(photographer);
     const userHeaderDOM = photographerModel.getHeader();
     mainHeader.appendChild(userHeaderDOM);
-
-    const mediaSection = document.querySelector("#grid_card");
     const mainLikes = document.querySelector('#footer');
-    let mediaModel;
-    let totalLikes = 0;
-    let totalPrice = 0;
-    let close, nextElement;
 
-    console.log(medias);
 
     // function à appeller (updateGrid)
+    updateGrid(medias);
 
+    const likeDOM = mediaModel.displayLikes(totalLikes, totalPrice);
+    mainLikes.appendChild(likeDOM);
 
-    /*medias.forEach((media) => {
+    return medias;
+
+}
+
+function updateGrid(data) {
+    data.forEach((media) => {
         mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediaSection.appendChild(mediaCardDOM);
@@ -81,8 +87,8 @@ async function displayData(photographer, medias) {
 
             nextElement = document.querySelector("#next");
             nextElement.addEventListener('click', () => {
-                let index = medias.findIndex(element => element.id === currentElement);
-                let nextItem = medias[mediaModel.calculateIndex(index, medias.length, true)];
+                let index = data.findIndex(element => element.id === currentElement);
+                let nextItem = data[mediaModel.calculateIndex(index, data.length, true)];
                 currentElement = nextItem.id;
                 let url, type;
 
@@ -101,8 +107,8 @@ async function displayData(photographer, medias) {
 
             let previous = document.querySelector('#previous');
             previous.addEventListener('click', () => {
-                let index = medias.findIndex(element => element.id === currentElement);
-                let previousItem = medias[mediaModel.calculateIndex(index, medias.length, false)];
+                let index = data.findIndex(element => element.id === currentElement);
+                let previousItem = data[mediaModel.calculateIndex(index, data.length, false)];
                 currentElement = previousItem.id;
                 let url, type;
 
@@ -128,11 +134,7 @@ async function displayData(photographer, medias) {
 
         totalLikes += mediaModel.getLikes();
         totalPrice += mediaModel.getPrice();
-    }); */
-
-    const likeDOM = mediaModel.displayLikes(totalLikes, totalPrice);
-    mainLikes.appendChild(likeDOM);
-
+    });
 }
 
 popularity.addEventListener('click', () => {
