@@ -174,6 +174,10 @@ form input, textarea {
     padding: 4px 0;
 }
 
+#list_image button ul li:nth-child(1) {
+    width: 70%;
+}
+
 #list_image button .fa-angle-down.rotate-active {
     transform: rotate(180deg) translateY(50%)
 }
