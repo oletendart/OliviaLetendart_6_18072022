@@ -28,26 +28,22 @@ button.addEventListener('click', () => {
 
 
 async function getMedia() {
-    fetch('./data/photographers.json')
-        .then(response => response.json())
-        .then(data => {
+    let fetchData = await fetch('./data/photographers.json')
+    let data = await fetchData.json()
 
-            const photographer = data.photographers.find((photographer) => {
+    let photoId = data.photographers.find((photographer) => {
 
-                return photographer.id == photographerId;
-            });
+        return photographer.id == photographerId;
+    });
 
-            const medias = data.media.filter((media) => {
-                    if (media.photographerId === photographer.id) {
-                        return media;
-                    }
-                }
-            );
+    let medias = data.media.filter((media) => {
+            if (media.photographerId === photoId.id) {
+                return media;
+            }
+        }
+    );
 
-            displayData(photographer, medias);
-
-        })
-        .catch(error => console.log("Erreur : " + error));
+    return {medias,photoId};
 }
 
 
@@ -58,18 +54,15 @@ async function displayData(photographer, medias) {
     mainHeader.appendChild(userHeaderDOM);
     const mainLikes = document.querySelector('#footer');
 
-
-    // function à appeller (updateGrid)
     updateGrid(medias);
 
     const likeDOM = mediaModel.displayLikes(totalLikes, totalPrice);
     mainLikes.appendChild(likeDOM);
 
-    return medias;
-
 }
 
 function updateGrid(data) {
+    mediaSection.innerHTML = "";
     data.forEach((media) => {
         mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
@@ -137,27 +130,24 @@ function updateGrid(data) {
     });
 }
 
-popularity.addEventListener('click', () => {
-    console.log('trier par : popularité (likes)');
-    console.log(medias.sort((a, b) => a.likes - b.likes));
-    // appeler la function updateGrid, en lui donnant la ligne précedente
-});
-
-date.addEventListener('click', () => {
-    console.log("trier par : date (date)");
-    console.log(medias.sort((a,b) => ('' + a.date).localeCompare(b.date)));
-    // appeler la function updateGrid, en lui donnant la ligne précedente
-});
-
-title.addEventListener('click' , () => {
-    console.log("trier par : titre (title)");
-    console.log(medias.sort((a,b) => ('' + a.title).localeCompare(b.title)));
-    // mettre à jour displayData
-});
-
 
 async function init() {
-    await getMedia();
+    let {medias,photoId} = await getMedia();
+
+    await displayData(photoId, medias);
+    popularity.addEventListener('click', () => {
+        updateGrid(medias.sort((a, b) => a.likes - b.likes));
+        //console.log(medias.sort((a, b) => a.likes - b.likes));
+    });
+
+    date.addEventListener('click', () => {
+        updateGrid(medias.sort((a,b) => ('' + a.date).localeCompare(b.date)));
+    });
+
+    title.addEventListener('click' , () => {
+        updateGrid(medias.sort((a,b) => ('' + a.title).localeCompare(b.title)));
+    });
+
 }
 
 init();
