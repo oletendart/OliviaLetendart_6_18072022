@@ -225,6 +225,7 @@ form input, textarea {
     line-height: 32px;
     color: #901C1C;
     text-align: left;
+    cursor: pointer;
 }
 .card .icon_love {
     height: 18px;

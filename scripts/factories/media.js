@@ -103,7 +103,7 @@ function mediaFactory(data) {
             img.setAttribute('alt', title);
             media.appendChild(img);
             div.appendChild(media);
-        } else {
+        } else if(type === 'video'){
             const videoContainer = document.createElement('video');
             const source = document.createElement("source");
             videoContainer.setAttribute('id', 'toggleMedia');
@@ -114,6 +114,9 @@ function mediaFactory(data) {
             videoContainer.appendChild(source);
             media.appendChild(videoContainer);
             div.appendChild(media);
+        }
+        else{
+            // afficher une photo ou un texte pour l'erreur
         }
         let h5 = document.querySelector("#h5Text");
         h5.textContent = title;
