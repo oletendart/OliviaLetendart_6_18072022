@@ -10,7 +10,7 @@ function mediaFactory(data) {
         const img = document.createElement('img');
         const videoContainer = document.createElement('video');
         const source = document.createElement("source");
-        const divI = document.createElement('div');
+        const divLikes = document.createElement('div');
         if (image) {
             img.setAttribute("src", urlImg + image)
             img.setAttribute("alt", title);
@@ -31,16 +31,16 @@ function mediaFactory(data) {
         div.setAttribute('data-id', id);
         const flex = document.createElement('div');
         flex.setAttribute("class", "flex");
-        const h3 = document.createElement('h3');
-        h3.textContent = title;
-        const h4 = document.createElement('h4');
-        const i = document.createElement('i');
-        i.setAttribute("class", "far fa-heart icon_love");
-        h4.textContent = likes;
-        divI.appendChild(h4);
-        divI.appendChild(i);
-        flex.appendChild(h3);
-        flex.appendChild(divI);
+        const titleCard = document.createElement('h3');
+        titleCard.textContent = title;
+        const numberLikes = document.createElement('h4');
+        const heartIcon = document.createElement('i');
+        heartIcon.setAttribute("class", "far fa-heart icon_love");
+        numberLikes.textContent = likes;
+        divLikes.appendChild(numberLikes);
+        divLikes.appendChild(heartIcon);
+        flex.appendChild(titleCard);
+        flex.appendChild(divLikes);
         div.appendChild(flex);
         return (div)
     }

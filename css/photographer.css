@@ -232,6 +232,7 @@ form input, textarea {
     width: 18px;
     color: #901C1C;
     font-size: 18px;
+    cursor: pointer;
 }
 .card span {
     display: flex;
