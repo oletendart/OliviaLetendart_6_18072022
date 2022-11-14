@@ -214,30 +214,23 @@ function updateGrid(data) {
 
             const i = click.querySelector('i');
             let idI = i.dataset.id;
-            console.log(idI);
             let span = click.querySelector('span');
-            let numberSpan = span.innerText;
 
             console.log(data);
             let toto = data.find((element) => {
                 return element.id === parseInt(idI);
             })
 
-            console.log(toto.likes)
+            let numberLike = toto.likes + 1;
 
+            span.innerText = numberLike;
 
-            // chercher le media id dans le tableau qui correspond à celui dans l'event (dataset-id)
-            // lui ajouter 1 et afficher le nombre dans le span
+            let like = 0;
 
             // créer une variable = 0
             // parcourir le tableau des medias en récupérant tous les likes au fur et à mesure et les additionner avec la variable créée si dessus
             // remplacer dans le span le total des likes par la variable créée
 
-            span.innerText = parseInt(numberSpan) + 1;
-
-
-
-            // mettre à jour (addition & soustraction) l'affichage du coeur sur la carte (et le nombre)
             // mettre à jour la banderole avec le total des likes
         })
 
