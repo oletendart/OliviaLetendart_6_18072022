@@ -251,7 +251,7 @@ form input, textarea {
     align-items: center;
 }
 
-.flex div h4 {
+.flex div span {
     color: #901C1C;
     font-size: 24px;
     line-height: 32px;

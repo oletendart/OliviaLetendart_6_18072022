@@ -22,7 +22,7 @@ function mediaFactory(data) {
             source.setAttribute("src", urlImg + video);
             source.setAttribute('type', "video/mp4");
             source.setAttribute('alt', title);
-            div.setAttribute('data-url',  video);
+            div.setAttribute('data-url', video);
             div.setAttribute('data-type', 'video');
             div.setAttribute('data-title', title);
             videoContainer.appendChild(source);
@@ -33,9 +33,11 @@ function mediaFactory(data) {
         flex.setAttribute("class", "flex");
         const titleCard = document.createElement('h3');
         titleCard.textContent = title;
-        const numberLikes = document.createElement('h4');
+        const numberLikes = document.createElement('span');
+        numberLikes.setAttribute('id', 'media-' + id)
         const heartIcon = document.createElement('i');
         heartIcon.setAttribute("class", "far fa-heart icon_love");
+        heartIcon.setAttribute('data-id', id);
         numberLikes.textContent = likes;
         divLikes.appendChild(numberLikes);
         divLikes.appendChild(heartIcon);
@@ -103,7 +105,7 @@ function mediaFactory(data) {
             img.setAttribute('alt', title);
             media.appendChild(img);
             div.appendChild(media);
-        } else if(type === 'video'){
+        } else if (type === 'video') {
             const videoContainer = document.createElement('video');
             const source = document.createElement("source");
             videoContainer.setAttribute('id', 'toggleMedia');
@@ -114,8 +116,7 @@ function mediaFactory(data) {
             videoContainer.appendChild(source);
             media.appendChild(videoContainer);
             div.appendChild(media);
-        }
-        else{
+        } else {
             // afficher une photo ou un texte pour l'erreur
         }
         let h5 = document.querySelector("#h5Text");
@@ -141,5 +142,5 @@ function mediaFactory(data) {
     }
 
 
-    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox,updateLightbox, calculateIndex}
+    return {getMediaCardDOM, displayLikes, getLikes, getPrice, createLightbox, updateLightbox, calculateIndex}
 }
