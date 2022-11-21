@@ -20,7 +20,6 @@ let params = (new URL(document.location)).searchParams;
 const photographerId = params.get('id');
 
 button.addEventListener('click', () => {
-
     for (const active of hiddenActive) {
         active.classList.toggle('active');
     }
@@ -213,25 +212,36 @@ function updateGrid(data) {
             let click = event.target.parentNode;
 
             const i = click.querySelector('i');
-            let idI = i.dataset.id;
+            let idI = parseInt(i.dataset.id);
             let span = click.querySelector('span');
 
-            console.log(data);
-            let toto = data.find((element) => {
-                return element.id === parseInt(idI);
-            })
 
-            let numberLike = toto.likes + 1;
+            if (data.some(media => media.id === idI)) {
 
-            span.innerText = numberLike;
+                data = data.map(media => {
+                    if (media.id === idI) {
+                        media.likes++;
+                        span.innerText = media.likes;
+                    }
+                    return media;
+                })
+            }
 
-            let like = 0;
 
-            // créer une variable = 0
-            // parcourir le tableau des medias en récupérant tous les likes au fur et à mesure et les additionner avec la variable créée si dessus
+            let likesTotal = 0;
+
+            data.forEach(element => {
+                likesTotal += element.likes;
+            });
+
+            console.log(likesTotal);
+
+            const likes = document.querySelector('#likesTotal');
+
+            likes.innerText = likesTotal;
+
             // remplacer dans le span le total des likes par la variable créée
 
-            // mettre à jour la banderole avec le total des likes
         })
 
         totalLikes += mediaModel.getLikes();
@@ -250,10 +260,14 @@ async function init() {
 
     date.addEventListener('click', () => {
         updateGrid(medias.sort((a,b) => ('' + a.date).localeCompare(b.date)));
+        date.classList.remove("hidden");
+        popularity.classList.add('hidden');
     });
 
     title.addEventListener('click' , () => {
         updateGrid(medias.sort((a,b) => ('' + a.title).localeCompare(b.title)));
+        title.classList.remove('hidden');
+        popularity.classList.add('hidden');
     });
 
 }

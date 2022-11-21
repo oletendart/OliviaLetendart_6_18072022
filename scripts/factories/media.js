@@ -50,12 +50,15 @@ function mediaFactory(data) {
     function displayLikes(totalLikes, totalPrice) {
         const div = document.createElement('div');
         const h4One = document.createElement('h4');
+        const span = document.createElement('span');
         const h4Two = document.createElement('h4');
         const i = document.createElement('i');
 
         i.setAttribute("aria-label", "likes");
         i.setAttribute("class", "fas fa-heart icon_love");
-        h4One.textContent = totalLikes;
+        span.textContent = totalLikes;
+        span.setAttribute('id', "likesTotal");
+        h4One.appendChild(span);
         h4One.appendChild(i);
         h4Two.textContent = totalPrice + " € / jour";
         div.appendChild(h4One);
