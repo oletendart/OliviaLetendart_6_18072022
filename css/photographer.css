@@ -234,6 +234,32 @@ form input, textarea {
     font-size: 18px;
     cursor: pointer;
 }
+
+.card .icon_love.activeLove {
+    height: 18px;
+    width: 18px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 900;
+    color: transparent;
+    background: #901C1C;
+    -webkit-background-clip: text;
+    animation: scale-in-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .card span {
     display: flex;
     justify-content: space-between;

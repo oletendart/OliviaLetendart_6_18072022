@@ -27,7 +27,6 @@ button.addEventListener('click', () => {
     rotateButton.classList.toggle('rotate-active');
 });
 
-
 async function getMedia() {
     let fetchData = await fetch('./data/photographers.json')
     let data = await fetchData.json()
@@ -222,11 +221,11 @@ function updateGrid(data) {
                     if (media.id === idI) {
                         media.likes++;
                         span.innerText = media.likes;
+                        i.classList.add('activeLove');
                     }
                     return media;
                 })
             }
-
 
             let likesTotal = 0;
 
@@ -234,13 +233,9 @@ function updateGrid(data) {
                 likesTotal += element.likes;
             });
 
-            console.log(likesTotal);
-
             const likes = document.querySelector('#likesTotal');
 
             likes.innerText = likesTotal;
-
-            // remplacer dans le span le total des likes par la variable créée
 
         })
 
