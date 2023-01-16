@@ -56,5 +56,11 @@ function photographerFactory(data) {
         return (div);
     }
 
-    return {getUserCardDOM, getHeader}
+    function namePhotographer() {
+        const h3 = document.createElement('h3');
+        h3.textContent = name;
+        return (h3);
+    }
+
+    return {getUserCardDOM, getHeader, namePhotographer}
 }

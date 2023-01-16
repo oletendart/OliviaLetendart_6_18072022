@@ -47,10 +47,13 @@
     cursor: pointer;
 }
 #contact_modal {
+    z-index: 999;
     position: fixed;
     background-color: rgba(84, 84, 84, 0.5);
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
 }
@@ -61,10 +64,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    position: relative;
     padding: 35px;
     width: 670px;
-    margin: 0 auto;
+    height: 900px;
+    transform: translate(-50%, -50%);
+    margin-top: 50vh;
+    margin-left: 50%;
 }
 
 .modal header {
@@ -108,7 +114,7 @@ form label {
 
 form input, textarea {
     width: 100%;
-    height: 68px;
+    height: 48px;
     border: none;
     border-radius: 5px;
     resize: none;
@@ -172,14 +178,16 @@ form input, textarea {
 
 #list_image button ul li {
     padding: 4px 0;
+    border: none;
 }
 
 #list_image button ul li:nth-child(1) {
     width: 70%;
+    border: none;
 }
 
 #list_image button .fa-angle-down.rotate-active {
-    transform: rotate(180deg) translateY(50%)
+    transform: rotate(180deg) translateY(50%);
 }
 
 #list_image button li.hidden {
@@ -188,7 +196,7 @@ form input, textarea {
 
 #list_image button li.active {
     display: block;
-    border-top: 1px solid #FFFFFF;
+    border-top: 1px solid #fff;
 }
 
 #list_image button.activeButton {
@@ -329,8 +337,8 @@ form input, textarea {
 
 #lightbox_modal.activeLightbox {
     display: block;
+    z-index: 999;
 }
-
 
 .lightbox {
     height: 90vw;

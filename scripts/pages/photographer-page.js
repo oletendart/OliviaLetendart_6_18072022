@@ -1,6 +1,6 @@
 // DOM
 const rotateButton = document.querySelector('.fa-angle-down');
-const hiddenActive = document.querySelectorAll(".hidden");
+const hiddenAll = document.querySelectorAll('.hidden');
 const button = document.querySelector('#name_select');
 let lightbox = document.querySelector('#lightbox_modal');
 const popularity = document.querySelector('#popularity');
@@ -9,6 +9,13 @@ const title = document.querySelector('#title');
 const mediaSection = document.querySelector("#grid_card");
 const mainLikes = document.querySelector('#footer');
 const mainHeader = document.querySelector('#main');
+const name = document.querySelector('.modal');
+const formModal = name.querySelector('form');
+const buttonForm = document.querySelector('.contact_button');
+const inputFirstname = document.querySelector('#firstname');
+const inputName = document.querySelector('#name');
+const inputEmail = document.querySelector('#email');
+const inputText = document.querySelector('#text');
 
 let currentElement;
 let mediaModel;
@@ -20,11 +27,19 @@ let params = (new URL(document.location)).searchParams;
 const photographerId = params.get('id');
 
 button.addEventListener('click', () => {
-    for (const active of hiddenActive) {
-        active.classList.toggle('active');
-    }
+    hiddenAll.forEach( (hidden) => {
+        hidden.removeAttribute('class');
+    });
     button.classList.toggle('activeButton');
     rotateButton.classList.toggle('rotate-active');
+});
+
+buttonForm.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log("Firstname : ", inputFirstname.value);
+    console.log("Name : ", inputName.value);
+    console.log('Email : ', inputEmail.value);
+    console.log('Text : ', inputText.value);
 });
 
 async function getMedia() {
@@ -43,14 +58,15 @@ async function getMedia() {
         }
     );
 
-    return {medias,photoId};
+    return {medias, photoId};
 }
-
 
 async function displayData(photographer, medias) {
     const photographerModel = photographerFactory(photographer);
     const userHeaderDOM = photographerModel.getHeader();
+    const namePhotographer = photographerModel.namePhotographer();
     mainHeader.appendChild(userHeaderDOM);
+    name.insertBefore(namePhotographer, formModal);
 
     updateGrid(medias);
 
@@ -70,7 +86,7 @@ function updateGrid(data) {
         let titleCard = mediaCardDOM.querySelector('h3');
         let likeIcon = mediaCardDOM.querySelector('i');
 
-        if(media.image) {
+        if (media.image) {
             mediaCard = mediaCardDOM.querySelector('img');
         } else if (media.video) {
             mediaCard = mediaCardDOM.querySelector('video');
@@ -81,7 +97,7 @@ function updateGrid(data) {
             currentElement = media.id;
 
             let click = event.target.parentNode;
-            let title,url,type;
+            let title, url, type;
 
             title = click.dataset.title;
             url = click.dataset.url;
@@ -145,7 +161,7 @@ function updateGrid(data) {
             currentElement = media.id;
 
             let click = event.target.parentNode;
-            let title,url,type;
+            let title, url, type;
 
             let parentClick = click.parentNode;
             title = parentClick.dataset.title;
@@ -244,26 +260,29 @@ function updateGrid(data) {
     });
 }
 
-
 async function init() {
-    let {medias,photoId} = await getMedia();
+    let {medias, photoId} = await getMedia();
 
     await displayData(photoId, medias);
     popularity.addEventListener('click', () => {
         updateGrid(medias.sort((a, b) => a.likes - b.likes));
+        date.setAttribute('class', 'hidden');
+        title.setAttribute('class', 'hidden');
     });
 
     date.addEventListener('click', () => {
-        updateGrid(medias.sort((a,b) => ('' + a.date).localeCompare(b.date)));
-        date.classList.remove("hidden");
-        popularity.classList.add('hidden');
+        updateGrid(medias.sort((a, b) => ('' + a.date).localeCompare(b.date)));
+        popularity.setAttribute('class', 'hidden');
+        console.log(title);
+        title.setAttribute('class', 'hidden');
     });
 
-    title.addEventListener('click' , () => {
-        updateGrid(medias.sort((a,b) => ('' + a.title).localeCompare(b.title)));
-        title.classList.remove('hidden');
-        popularity.classList.add('hidden');
+    title.addEventListener('click', () => {
+        updateGrid(medias.sort((a, b) => ('' + a.title).localeCompare(b.title)));
+        popularity.setAttribute('class', 'hidden');
+        date.setAttribute('class', 'hidden');
     });
+
 
 }
 
