@@ -6,6 +6,7 @@ function mediaFactory(data) {
 
     function getMediaCardDOM() {
         const div = document.createElement('div');
+        div.setAttribute("tabindex", "0");
         div.setAttribute("class", "card");
         const img = document.createElement('img');
         const videoContainer = document.createElement('video');

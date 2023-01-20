@@ -27,7 +27,7 @@
                 <li class="hidden" id="date">Date</li>
                 <li class="hidden" id="title">Titre</li>
             </ul>
-            <i class="fas fa-angle-down"></i>
+            <i class="fas fa-angle-down" id="mafleche"></i>
         </button>
     </header>
     <div id="grid_card">
@@ -44,7 +44,7 @@
             <img alt="close" onclick="closeModal()" src="/assets/icons/close.svg"/>
         </header>
 
-        <form aria-controls="modal">
+        <form aria-controls="modal" tabindex="0">
             <label for="firstname">Prénom</label>
             <input id="firstname" name="firstname" type="text"/>
             <label for="name">Nom</label>
@@ -58,7 +58,7 @@
     </div>
 </section>
 
-<section id="lightbox_modal">
+<section id="lightbox_modal" tabindex="3">
 </section>
 
 <script src="/scripts/factories/media.js"></script>

@@ -26,9 +26,10 @@ let totalPrice = 0;
 let params = (new URL(document.location)).searchParams;
 const photographerId = params.get('id');
 
-button.addEventListener('click', () => {
+document.getElementById("mafleche").addEventListener('click', (e) => {
+    e.stopImmediatePropagation()
     hiddenAll.forEach( (hidden) => {
-        hidden.removeAttribute('class');
+        hidden.classList.remove('hidden');
     });
     button.classList.toggle('activeButton');
     rotateButton.classList.toggle('rotate-active');
@@ -262,25 +263,32 @@ function updateGrid(data) {
 
 async function init() {
     let {medias, photoId} = await getMedia();
-
+    console.log(popularity);
+    console.log(date);
+    console.log(title);
     await displayData(photoId, medias);
     popularity.addEventListener('click', () => {
-        updateGrid(medias.sort((a, b) => a.likes - b.likes));
-        date.setAttribute('class', 'hidden');
-        title.setAttribute('class', 'hidden');
+        //updateGrid(medias.sort((a, b) => a.likes - b.likes));
+        date.classList.toggle('hidden');
+        title.classList.toggle('hidden');
     });
 
     date.addEventListener('click', () => {
-        updateGrid(medias.sort((a, b) => ('' + a.date).localeCompare(b.date)));
-        popularity.setAttribute('class', 'hidden');
-        console.log(title);
-        title.setAttribute('class', 'hidden');
+        console.log('je clique sur date');
+        //updateGrid(medias.sort((a, b) => ('' + a.date).localeCompare(b.date)));
+        popularity.classList.toggle('hidden');
+        console.log(title)
+        title.classList.add('hidden');
+        title.setAttribute('id','toto')
+
     });
 
     title.addEventListener('click', () => {
-        updateGrid(medias.sort((a, b) => ('' + a.title).localeCompare(b.title)));
-        popularity.setAttribute('class', 'hidden');
-        date.setAttribute('class', 'hidden');
+        console.log('je clique sur title');
+        //updateGrid(medias.sort((a, b) => ('' + a.title).localeCompare(b.title)));
+        popularity.classList.toggle('hidden');
+        date.classList.toggle('hidden');
+
     });
 
 

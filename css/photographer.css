@@ -194,11 +194,6 @@ form input, textarea {
     display: none;
 }
 
-#list_image button li.active {
-    display: block;
-    border-top: 1px solid #fff;
-}
-
 #list_image button.activeButton {
     flex-direction: column;
     cursor: pointer;
@@ -380,14 +375,14 @@ form input, textarea {
 }
 .lightbox .fa-angle-left {
     position: absolute;
-    top: calc(50% - 48px);
+    top: calc(50vh - 48px);
     transform: translateY(-50%);
     left: 20px;
 }
 
 .lightbox .fa-angle-right {
     position: absolute;
-    top: calc(50% - 48px);
+    top: calc(50vh - 48px);
     transform: translateY(-50%);
     right: 20px;
 }
