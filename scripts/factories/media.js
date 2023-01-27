@@ -6,7 +6,6 @@ function mediaFactory(data) {
 
     function getMediaCardDOM() {
         const div = document.createElement('div');
-        div.setAttribute("tabindex", "0");
         div.setAttribute("class", "card");
         const img = document.createElement('img');
         const videoContainer = document.createElement('video');
@@ -15,6 +14,7 @@ function mediaFactory(data) {
         if (image) {
             img.setAttribute("src", urlImg + image)
             img.setAttribute("alt", title);
+            img.setAttribute('tabindex', '0');
             div.setAttribute('data-url', image);
             div.setAttribute('data-type', 'img');
             div.setAttribute('data-title', title);
@@ -26,6 +26,7 @@ function mediaFactory(data) {
             div.setAttribute('data-url', video);
             div.setAttribute('data-type', 'video');
             div.setAttribute('data-title', title);
+            videoContainer.setAttribute('tabindex', '0');
             videoContainer.appendChild(source);
             div.appendChild(videoContainer);
         }
@@ -34,12 +35,15 @@ function mediaFactory(data) {
         flex.setAttribute("class", "flex");
         const titleCard = document.createElement('h3');
         titleCard.textContent = title;
+        titleCard.setAttribute('tabindex', '0');
         const numberLikes = document.createElement('span');
         numberLikes.setAttribute('id', 'media-' + id)
         const heartIcon = document.createElement('i');
         heartIcon.setAttribute("class", "far fa-heart icon_love");
         heartIcon.setAttribute('data-id', id);
+        heartIcon.setAttribute('tabindex', '0');
         numberLikes.textContent = likes;
+        numberLikes.setAttribute('tabindex', '0');
         divLikes.appendChild(numberLikes);
         divLikes.appendChild(heartIcon);
         flex.appendChild(titleCard);
@@ -59,9 +63,11 @@ function mediaFactory(data) {
         i.setAttribute("class", "fas fa-heart icon_love");
         span.textContent = totalLikes;
         span.setAttribute('id', "likesTotal");
+        h4One.setAttribute('tabindex', '0');
         h4One.appendChild(span);
         h4One.appendChild(i);
         h4Two.textContent = totalPrice + " € / jour";
+        h4Two.setAttribute('tabindex', '0');
         div.appendChild(h4One);
         div.appendChild(h4Two);
         return (div)
