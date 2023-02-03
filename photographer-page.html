@@ -27,7 +27,7 @@
                 <li class="hidden" id="date">Date</li>
                 <li class="hidden" id="title">Titre</li>
             </ul>
-            <i class="fas fa-angle-down" id="mafleche"></i>
+            <i class="fas fa-angle-down" id="arrow"></i>
         </button>
     </header>
     <div id="grid_card">
@@ -37,28 +37,28 @@
 <section id="footer">
 </section>
 
-<section id="contact_modal">
+<section id="contact_modal" tabindex="-1">
     <div class="modal">
         <header>
-            <h2>Contactez-moi</h2>
-            <img alt="close" onclick="closeModal()" src="/assets/icons/close.svg"/>
+            <h2 tabindex="1">Contactez-moi</h2>
+            <img alt="close" id="closeModal" src="/assets/icons/close.svg" tabindex="3"/>
         </header>
 
-        <form aria-controls="modal" tabindex="0">
-            <label for="firstname">Prénom</label>
-            <input id="firstname" name="firstname" type="text"/>
-            <label for="name">Nom</label>
-            <input id="name" name="name" type="text"/>
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email"/>
-            <label for="text">Votre message</label>
-            <textarea id="text" name="text"></textarea>
-            <input class="contact_button" type="submit" value="Envoyer" />
+        <form aria-controls="modal">
+            <label for="firstname" tabindex="4">Prénom</label>
+            <input id="firstname" name="firstname" type="text" tabindex="5"/>
+            <label for="name" tabindex="6">Nom</label>
+            <input id="name" name="name" type="text" tabindex="7"/>
+            <label for="email" tabindex="8">Email</label>
+            <input id="email" name="email" type="email" tabindex="9"/>
+            <label for="text" tabindex="10">Votre message</label>
+            <textarea id="text" name="text" tabindex="11"></textarea>
+            <input class="contact_button" type="submit" value="Envoyer" tabindex="12" id="send_data"/>
         </form>
     </div>
 </section>
 
-<section id="lightbox_modal" tabindex="3">
+<section id="lightbox_modal" tabindex="-1">
 </section>
 
 <script src="/scripts/factories/media.js"></script>

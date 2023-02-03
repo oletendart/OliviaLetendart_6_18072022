@@ -52,8 +52,8 @@ function photographerFactory(data) {
         secondDiv.appendChild(h2);
         secondDiv.appendChild(p);
         const button = document.createElement('button');
+        button.setAttribute('id', 'openForm');
         button.setAttribute('class', 'contact_button');
-        button.setAttribute('onclick', 'displayModal()');
         button.textContent = "Contactez-moi";
         const img = document.createElement('img');
         img.setAttribute("src", picture);
@@ -68,6 +68,7 @@ function photographerFactory(data) {
     function namePhotographer() {
         const h3 = document.createElement('h3');
         h3.textContent = name;
+        h3.setAttribute('tabindex', '2');
         return (h3);
     }
 
