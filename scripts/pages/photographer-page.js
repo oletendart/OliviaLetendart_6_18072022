@@ -11,7 +11,6 @@ const mainLikes = document.querySelector('#footer');
 const mainHeader = document.querySelector('#main');
 const name = document.querySelector('.modal');
 const formModal = name.querySelector('form');
-const openModalForm = document.getElementById('#openForm');
 const openModal = document.querySelector('#contact_modal');
 const sendData = document.querySelector('#send_data');
 const closeModalForm = document.querySelector('#closeModal');
@@ -39,11 +38,39 @@ arrow.addEventListener('click', (e) => {
     rotateButton.classList.toggle('rotate-active');
 });
 
-console.log(openModalForm, sendData)
-openModal.style.display = "block";
+arrow.addEventListener('keypress', (e) => {
+    if(e.key === "Enter") {
+        e.stopImmediatePropagation();
+        const hiddenAll = document.querySelectorAll('.hidden');
+        hiddenAll.forEach( (hidden) => {
+            hidden.classList.remove('hidden');
+        });
+        button.classList.toggle('activeButton');
+        rotateButton.classList.toggle('rotate-active');
+    }
+})
 
 closeModalForm.addEventListener('click', () => {
-    openModal.style.display = "none"
+    openModal.style.display = "none";
+});
+
+closeModalForm.addEventListener('keypress', (e) => {
+    if(e.key === "Enter") {
+        openModal.style.display = "none";
+        const allTabindex0 = document.querySelectorAll('[tabindex="0"]');
+        const allTabindexLess3 = document.querySelectorAll('[tabindex="-3"]');
+
+        allTabindex0.forEach((element) => {
+            element.setAttribute("tabindex", '-1');
+        });
+
+        allTabindexLess3.forEach((element) => {
+            element.setAttribute("tabindex", "0");
+        })
+
+        openForm.focus();
+
+    }
 })
 
 sendData.addEventListener('click', (e) => {
@@ -81,10 +108,36 @@ async function displayData(photographer, medias) {
     mainHeader.appendChild(userHeaderDOM);
     name.insertBefore(namePhotographer, formModal);
 
+    const openForm = mainHeader.querySelector('#openForm');
+
+    openForm.addEventListener('keypress', (e) => {
+        if(e.key === "Enter") {
+            openModal.style.display = "block";
+            const h2Form = name.querySelector('h2');
+            console.log(h2Form)
+            h2Form.focus();
+
+            const allTabindex0 = document.querySelectorAll('[tabindex="0"]');
+            const allTabindexLess1 = document.querySelectorAll('[tabindex="-1"]');
+            allTabindex0.forEach((element) => {
+                element.setAttribute('tabindex', '-3');
+            });
+            allTabindexLess1.forEach((element) => {
+                element.setAttribute('tabindex', '0');
+            });
+        }
+    })
+
+    openForm.addEventListener('click', () => {
+        openModal.style.display = "block";
+    });
+
     updateGrid(medias);
 
     const likeDOM = mediaModel.displayLikes(totalLikes, totalPrice);
     mainLikes.appendChild(likeDOM);
+
+    return openForm;
 }
 
 function updateGrid(data) {
@@ -270,7 +323,17 @@ function updateGrid(data) {
 
         mediaCard.addEventListener('keypress', (e) => {
             if(e.key === "Enter") {
-                openLightboxMedia(e)
+                openLightboxMedia(e);
+
+                const allTabindex0 = document.querySelectorAll('[tabindex="0"]');
+                const allTabIndexLess2 = document.querySelectorAll('[tabindex="-2"]');
+
+                allTabindex0.forEach((element) => {
+                    element.setAttribute('tabindex', '-3');
+                });
+                allTabIndexLess2.forEach((element) => {
+                    element.setAttribute('tabindex', '0');
+                });
             }
         });
 
@@ -311,13 +374,32 @@ async function init() {
         rotateButton.classList.toggle('rotate-active');
     });
 
+    popularity.addEventListener('keypress', (e) => {
+        if(e.key === "Enter") {
+            updateGrid(medias.sort((a, b) => a.likes - b.likes));
+            date.classList.toggle('hidden');
+            title.classList.toggle('hidden');
+            button.classList.toggle('activeButton');
+            rotateButton.classList.toggle('rotate-active');
+        }
+    });
+
     date.addEventListener('click', () => {
         updateGrid(medias.sort((a, b) => ('' + a.date).localeCompare(b.date)));
         popularity.classList.toggle('hidden');
-        title.classList.add('hidden');
-        title.setAttribute('id','toto');
+        title.classList.toggle('hidden');
         button.classList.toggle('activeButton');
         rotateButton.classList.toggle('rotate-active');
+    });
+
+    date.addEventListener('keypress', (e) => {
+        if(e.key === "Enter") {
+            updateGrid(medias.sort((a, b) => ('' + a.date).localeCompare(b.date)));
+            popularity.classList.toggle('hidden');
+            title.classList.toggle('hidden');
+            button.classList.toggle('activeButton');
+            rotateButton.classList.toggle('rotate-active');
+        }
     });
 
     title.addEventListener('click', () => {
@@ -328,6 +410,15 @@ async function init() {
         rotateButton.classList.toggle('rotate-active');
     });
 
+    title.addEventListener('keypress', (e) => {
+        if(e.key === "Enter") {
+            updateGrid(medias.sort((a, b) => ('' + a.title).localeCompare(b.title)));
+            popularity.classList.toggle('hidden');
+            date.classList.toggle('hidden');
+            button.classList.toggle('activeButton');
+            rotateButton.classList.toggle('rotate-active');
+        }
+    });
 
 }
 

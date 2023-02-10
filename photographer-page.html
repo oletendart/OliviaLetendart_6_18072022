@@ -22,12 +22,12 @@
     <header>
         <label for="name_select" tabindex="0">Trier par</label>
         <button id="name_select">
+            <i class="fas fa-angle-down" id="arrow" tabindex="0"></i>
             <ul>
-                <li id="popularity">Popularité</li>
-                <li class="hidden" id="date">Date</li>
-                <li class="hidden" id="title">Titre</li>
+                <li id="popularity" tabindex="0">Popularité</li>
+                <li class="hidden" id="date" tabindex="0">Date</li>
+                <li class="hidden" id="title" tabindex="0">Titre</li>
             </ul>
-            <i class="fas fa-angle-down" id="arrow"></i>
         </button>
     </header>
     <div id="grid_card">
@@ -40,25 +40,25 @@
 <section id="contact_modal" tabindex="-1">
     <div class="modal">
         <header>
-            <h2 tabindex="1">Contactez-moi</h2>
-            <img alt="close" id="closeModal" src="/assets/icons/close.svg" tabindex="3"/>
+            <h2 tabindex="-1">Contactez-moi</h2>
+            <img alt="close" id="closeModal" src="/assets/icons/close.svg" tabindex="-1"/>
         </header>
 
         <form aria-controls="modal">
-            <label for="firstname" tabindex="4">Prénom</label>
-            <input id="firstname" name="firstname" type="text" tabindex="5"/>
-            <label for="name" tabindex="6">Nom</label>
-            <input id="name" name="name" type="text" tabindex="7"/>
-            <label for="email" tabindex="8">Email</label>
-            <input id="email" name="email" type="email" tabindex="9"/>
-            <label for="text" tabindex="10">Votre message</label>
-            <textarea id="text" name="text" tabindex="11"></textarea>
-            <input class="contact_button" type="submit" value="Envoyer" tabindex="12" id="send_data"/>
+            <label for="firstname" tabindex="-1">Prénom</label>
+            <input id="firstname" name="firstname" type="text" tabindex="-1"/>
+            <label for="name" tabindex="-1">Nom</label>
+            <input id="name" name="name" type="text" tabindex="-1"/>
+            <label for="email" tabindex="-1">Email</label>
+            <input id="email" name="email" type="email" tabindex="-1"/>
+            <label for="text" tabindex="-1">Votre message</label>
+            <textarea id="text" name="text" tabindex="-1"></textarea>
+            <input class="contact_button" type="submit" value="Envoyer" tabindex="-1" id="send_data"/>
         </form>
     </div>
 </section>
 
-<section id="lightbox_modal" tabindex="-1">
+<section id="lightbox_modal" tabindex="-2">
 </section>
 
 <script src="/scripts/factories/media.js"></script>

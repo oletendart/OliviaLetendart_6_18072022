@@ -68,7 +68,7 @@ function photographerFactory(data) {
     function namePhotographer() {
         const h3 = document.createElement('h3');
         h3.textContent = name;
-        h3.setAttribute('tabindex', '2');
+        h3.setAttribute('tabindex', '-1');
         return (h3);
     }
 

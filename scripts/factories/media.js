@@ -86,27 +86,27 @@ function mediaFactory(data) {
         div.setAttribute('class', 'lightbox');
         const media = document.createElement('div');
         media.setAttribute('id', 'toggleMedia');
-        media.setAttribute('tabindex', '2');
+        media.setAttribute('tabindex', '-2');
         const previous = document.createElement('i');
         previous.setAttribute('class', 'fas fa-angle-left icon_lightbox');
         previous.setAttribute('id', 'previous');
-        previous.setAttribute('tabindex', '1');
+        previous.setAttribute('tabindex', '-2');
         const next = document.createElement('i');
         next.setAttribute('class', 'fas fa-angle-right icon_lightbox');
         next.setAttribute('id', 'next');
-        next.setAttribute('tabindex', '4');
+        next.setAttribute('tabindex', '-2');
         const close = document.createElement('i');
         close.setAttribute('class', 'fas fa-times icon_lightbox');
         close.setAttribute('id', 'close');
-        close.setAttribute('tabindex', '5');
+        close.setAttribute('tabindex', '-2');
         const h5 = document.createElement('h5');
         h5.setAttribute('id', 'h5Text');
-        h5.setAttribute('tabindex', '3');
-        div.appendChild(media);
+        h5.setAttribute('tabindex', '-2');
         div.appendChild(previous);
+        div.appendChild(media);
+        div.appendChild(h5);
         div.appendChild(close);
         div.appendChild(next);
-        div.appendChild(h5);
         return (div)
 
     }
@@ -132,7 +132,7 @@ function mediaFactory(data) {
             media.appendChild(videoContainer);
             div.appendChild(media);
         } else {
-            // afficher une photo ou un texte pour l'erreur
+            div.innerHTML = "Erreur, l'image ne s'affiche pas";
         }
         let h5 = document.querySelector("#h5Text");
         h5.textContent = title;

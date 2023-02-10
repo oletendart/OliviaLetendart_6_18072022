@@ -146,6 +146,7 @@ form input, textarea {
 }
 
 #list_image button .fa-angle-down {
+    z-index: 1;
     color: #fff;
     width: 16px;
     height: 16px;
