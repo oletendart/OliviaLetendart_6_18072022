@@ -153,11 +153,14 @@ function updateGrid(data) {
             url = click.dataset.url;
             type = click.dataset.type;
 
+            console.log(click)
+
             lightbox.classList.toggle('activeLightbox');
             let div = mediaModel.createLightbox();
             lightbox.appendChild(div);
             div = mediaModel.updateLightbox(div, title, url, type);
             lightbox.appendChild(div);
+
 
 
             nextElement = document.querySelector("#next");
@@ -180,6 +183,27 @@ function updateGrid(data) {
 
             });
 
+            window.addEventListener("keydown", e => {
+                if(e.key === "ArrowRight") {
+                    let index = data.findIndex(element => element.id === currentElement);
+                    let nextItem = data[mediaModel.calculateIndex(index, data.length, true)];
+                    currentElement = nextItem.id;
+                    let url, type;
+
+                    if (nextItem.image) {
+                        url = nextItem.image;
+                        type = "img";
+                    } else if (nextItem.video) {
+                        url = nextItem.video;
+                        type = "video";
+                    }
+
+                    div = mediaModel.updateLightbox(div, nextItem.title, url, type);
+                    lightbox.appendChild(div);
+                }
+
+            })
+
             let previous = document.querySelector('#previous');
             previous.addEventListener('click', () => {
                 let index = data.findIndex(element => element.id === currentElement);
@@ -199,10 +223,37 @@ function updateGrid(data) {
                 lightbox.appendChild(div);
             })
 
+           window.addEventListener('keydown', e => {
+               if(e.key === 'ArrowLeft') {
+                   let index = data.findIndex(element => element.id === currentElement);
+                   let previousItem = data[mediaModel.calculateIndex(index, data.length, false)];
+                   currentElement = previousItem.id;
+                   let url, type;
+
+                   if (previousItem.image) {
+                       url = previousItem.image;
+                       type = "img";
+                   } else if (previousItem.video) {
+                       url = previousItem.video;
+                       type = "video";
+                   }
+
+                   div = mediaModel.updateLightbox(div, previousItem.title, url, type);
+                   lightbox.appendChild(div);
+               }
+           })
+
             close = document.querySelector('#close');
             close.addEventListener('click', () => {
                 lightbox.innerHTML = "";
                 lightbox.classList.toggle('activeLightbox');
+            });
+
+            close.addEventListener("keypress", (e) => {
+                if(e.key === "Enter") {
+                    lightbox.innerHTML = "";
+                    lightbox.classList.toggle('activeLightbox');
+                }
             });
 
         }
@@ -244,6 +295,27 @@ function updateGrid(data) {
 
             });
 
+            window.addEventListener("keydown", e => {
+                if(e.key === "ArrowRight") {
+                    let index = data.findIndex(element => element.id === currentElement);
+                    let nextItem = data[mediaModel.calculateIndex(index, data.length, true)];
+                    currentElement = nextItem.id;
+                    let url, type;
+
+                    if (nextItem.image) {
+                        url = nextItem.image;
+                        type = "img";
+                    } else if (nextItem.video) {
+                        url = nextItem.video;
+                        type = "video";
+                    }
+
+                    div = mediaModel.updateLightbox(div, nextItem.title, url, type);
+                    lightbox.appendChild(div);
+                }
+
+            })
+
             let previous = document.querySelector('#previous');
             previous.addEventListener('click', () => {
                 let index = data.findIndex(element => element.id === currentElement);
@@ -261,7 +333,28 @@ function updateGrid(data) {
 
                 div = mediaModel.updateLightbox(div, previousItem.title, url, type);
                 lightbox.appendChild(div);
+            });
+
+            window.addEventListener('keydown', e => {
+                if(e.key === 'ArrowLeft') {
+                    let index = data.findIndex(element => element.id === currentElement);
+                    let previousItem = data[mediaModel.calculateIndex(index, data.length, false)];
+                    currentElement = previousItem.id;
+                    let url, type;
+
+                    if (previousItem.image) {
+                        url = previousItem.image;
+                        type = "img";
+                    } else if (previousItem.video) {
+                        url = previousItem.video;
+                        type = "video";
+                    }
+
+                    div = mediaModel.updateLightbox(div, previousItem.title, url, type);
+                    lightbox.appendChild(div);
+                }
             })
+
 
             close = document.querySelector('#close');
             close.addEventListener('click', () => {
@@ -269,6 +362,12 @@ function updateGrid(data) {
                 lightbox.classList.toggle('activeLightbox');
             });
 
+            close.addEventListener("keypress", (e) => {
+                if(e.key === "Enter") {
+                    lightbox.innerHTML = "";
+                    lightbox.classList.toggle('activeLightbox');
+                }
+            });
 
         }
 
@@ -277,7 +376,8 @@ function updateGrid(data) {
 
             const i = click.querySelector('i');
             let idI = parseInt(i.dataset.id);
-            let span = click.querySelector('span');
+            let span = click.parentNode;
+            parentSpan = span.querySelector('span');
 
 
             if (data.some(media => media.id === idI)) {
@@ -285,7 +385,7 @@ function updateGrid(data) {
                 data = data.map(media => {
                     if (media.id === idI) {
                         media.likes++;
-                        span.innerText = media.likes;
+                        parentSpan.innerText = media.likes;
                         i.classList.add('activeLove');
                     }
                     return media;
@@ -344,6 +444,16 @@ function updateGrid(data) {
         titleCard.addEventListener('keypress', (e) => {
             if(e.key === "Enter") {
                 openLightboxTitle(e)
+
+                const allTabindex0 = document.querySelectorAll('[tabindex="0"]');
+                const allTabIndexLess2 = document.querySelectorAll('[tabindex="-2"]');
+
+                allTabindex0.forEach((element) => {
+                    element.setAttribute('tabindex', '-3');
+                });
+                allTabIndexLess2.forEach((element) => {
+                    element.setAttribute('tabindex', '0');
+                });
             }
         })
 

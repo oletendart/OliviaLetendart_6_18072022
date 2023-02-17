@@ -57,7 +57,7 @@ function photographerFactory(data) {
         button.textContent = "Contactez-moi";
         const img = document.createElement('img');
         img.setAttribute("src", picture);
-        img.setAttribute("alt", "#");
+        img.setAttribute("alt", "photo de " + name);
         img.setAttribute('tabindex', '0');
         div.appendChild(secondDiv);
         div.appendChild(button);

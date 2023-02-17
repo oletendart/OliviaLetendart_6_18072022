@@ -13,7 +13,7 @@ function mediaFactory(data) {
         const divLikes = document.createElement('div');
         if (image) {
             img.setAttribute("src", urlImg + image)
-            img.setAttribute("alt", title);
+            img.setAttribute("alt", "image dont le titre est " + title);
             img.setAttribute('tabindex', '0');
             div.setAttribute('data-url', image);
             div.setAttribute('data-type', 'img');
@@ -22,7 +22,7 @@ function mediaFactory(data) {
         } else {
             source.setAttribute("src", urlImg + video);
             source.setAttribute('type', "video/mp4");
-            source.setAttribute('alt', title);
+            source.setAttribute('alt', "vidéo dont le titre est " + title);
             div.setAttribute('data-url', video);
             div.setAttribute('data-type', 'video');
             div.setAttribute('data-title', title);
@@ -37,15 +37,18 @@ function mediaFactory(data) {
         titleCard.textContent = title;
         titleCard.setAttribute('tabindex', '0');
         const numberLikes = document.createElement('span');
-        numberLikes.setAttribute('id', 'media-' + id)
+        numberLikes.setAttribute('id', 'media-' + id);
         const heartIcon = document.createElement('i');
         heartIcon.setAttribute("class", "far fa-heart icon_love");
         heartIcon.setAttribute('data-id', id);
-        heartIcon.setAttribute('tabindex', '0');
+        const span = document.createElement('span');
+        span.setAttribute('aria-label', 'likes');
+        span.setAttribute('tabindex', '0');
         numberLikes.textContent = likes;
         numberLikes.setAttribute('tabindex', '0');
         divLikes.appendChild(numberLikes);
-        divLikes.appendChild(heartIcon);
+        span.appendChild(heartIcon)
+        divLikes.appendChild(span);
         flex.appendChild(titleCard);
         flex.appendChild(divLikes);
         div.appendChild(flex);
@@ -102,11 +105,8 @@ function mediaFactory(data) {
         const h5 = document.createElement('h5');
         h5.setAttribute('id', 'h5Text');
         h5.setAttribute('tabindex', '-2');
-        div.appendChild(previous);
-        div.appendChild(media);
-        div.appendChild(h5);
-        div.appendChild(close);
-        div.appendChild(next);
+        div.append(previous, media, h5, next, close);
+
         return (div)
 
     }
